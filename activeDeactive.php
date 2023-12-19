@@ -3,7 +3,8 @@
 register_activation_hook(__FILE__, 'custom_registration_plugin_activate');
 register_deactivation_hook(__FILE__, 'custom_registration_plugin_deactivate');
 
-function custom_registration_plugin_activate() {
+function custom_registration_plugin_activate()
+{
     // Create custom table on activation
     global $wpdb;
 
@@ -23,17 +24,15 @@ function custom_registration_plugin_activate() {
         PRIMARY KEY (id)
     ) $charset_collate;";
 
-    require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
+    require_once ABSPATH . 'wp-admin/includes/upgrade.php';
     dbDelta($sql);
 }
 
-
-function custom_registration_plugin_deactivate() {
+function custom_registration_plugin_deactivate()
+{
     // Delete custom table on deactivation
     global $wpdb;
 
     $table_name = $wpdb->prefix . 'custom_registration_data';
     $wpdb->query("DROP TABLE IF EXISTS $table_name");
 }
-
-?>

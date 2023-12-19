@@ -1,80 +1,91 @@
-<?php 
+<?php
 
+function custom_email_form_shortcode()
+{
 
-function custom_email_form_shortcode() {
-    
+    if (!session_id()) {
+        session_start();
+    }
+
+    // Check if the email is stored in the session
+    if (isset($_SESSION['user_email'])) {
+        $user_email = $_SESSION['user_email'];
+    }
+
     ob_start();
     // $email = isset($_SESSION['registration_email']) ? $_SESSION['registration_email'] : '';
-    $email = get_option('registration_email', '');
+    //$email = get_option('registration_email', '');
     ?>
-<div class="container-fluid">
-    <div class="row d-flex flex-column flex-md-row justify-content-center" style="gap:20px">
-        <div class="col-11 col-md-3 columns-class d-flex flex-md-column pt-5 pt-md-0" style="gap:20px">
-            <div class="d-flex flex-column flex-md-row mt-md-4 mb-md-2" style="gap:20px">
-                <div
-                    style="z-index:1; background-color:#23DC32; height:30px; padding:5px; padding-left:9px; padding-right:9px; border-radius:5px; color:white">
-                    <i class="fas fa-check"></i>
-                </div>
-                <div>
-                    <h6 style="margin:0px; margin-bottom:5px">Personal Info</h6>
-                    <p>Tell us about yourself</p>
-                </div>
-            </div>
 
-            <div class="d-flex mb-2 flex-column flex-md-row" style="gap:20px">
-                <div class="secondClass"
-                    style="z-index:1; background-color:#23DC32; height:30px; padding:5px; padding-left:9px; padding-right:9px; border-radius:5px; color:#9E9E9E">
-                    <i style="color:white" class="fa-solid fa-check"></i>
-                </div>
-                <div>
-                    <h6 style="margin:0px; margin-bottom:5px">Business Info</h6>
-                    <p>Tell us about your business
-                    </p>
-                </div>
-            </div>
-
-            <div class="d-flex flex-column flex-md-row" style="gap:20px">
-                <div
-                    style="z-index:1; background-color:#32DC23; height:30px; padding:5px; padding-left:10px; padding-right:10px; border-radius:5px; color:#9E9E9E">
-                    <i style="color:white" class="fa-solid fa-3"></i>
-                </div>
-                <div>
-                    <h6 style="margin:0px; margin-bottom:5px">Verification</h6>
-                    <p>Account verification via Email</p>
-                </div>
-            </div>
-            <div class="hr-div">
-                <hr>
-            </div>
+<div class="conatiner-fluid loader" style="display:none">
+    <div class="ngx-spinner-overlay">
+        <div class="la-square-jelly-box">
+            <div></div>
+            <div></div>
         </div>
-        <div class="col-11 col-md-8  columns-class pt-3 pb-3 px-5">
-            <div class="email-verification mt-2 mb-2">
+        <div class="loading-text">
+            <p>Please wait while Loading...</p>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid main-container" style="background-color:#F2F8FC;">
+    <div class="row d-flex justify-content-center pt-5 pb-5" style="gap:20px">
+
+        <div class="col-11 col-md-9  columns-class-email pb-3 pt-3 px-3 px-md-5">
+            <div class="text-center">
+                <a href="https://saasypos.com/"> <img
+                        src="<?php echo plugins_url('./assets/images/logo.png', __FILE__); ?>" alt="Phone Icon"
+                        style="width: 180px; "></a>
+                <h2 style="font-size:24px;  font-weight:700; color:#23DC32; margin-bottom:4px;">30-Day Free
+                    Trial
+                </h2>
+                <p class="paraclass">
+                    Unlimited access to all features. No credit card required</p>
+            </div>
+            <div class="email-verification my-4">
                 <h6 style="font-size:24px; font-weight:700; color:#32DC23; margin:0px; margin-bottom:5px">Verification
                 </h6>
                 <p>Account verification via Email</p>
-                <div class="text-center mt-5 mb-5">
+            </div>
+            <div class="text-center d-flex flex-column align-items-center justify-content-center inner-div-email-fir ">
+                <div class="inner-div-email">
                     <h6 style="font-size:18px; font-weight:700; color:black; margin:0px; margin-bottom:5px">Verify
                         Your Email Address</h6>
-                    <p>We have sent an account verification email <span style="color:#32DC23"><b> <?php echo $email;?>
+                    <p class="mt-3 mb-3">We have sent an account verification on <span style="color:#32DC23"><b>
+                                <?php echo $user_email; ?>
                             </b></span>
                         to verify your email
-                        and activate your account. If you
+                        and activate your account.<br>If you
                         don’t see it, please check your spam/junk folder. </p>
-                    <p>Didn t receive the verification code?</p>
-                    <button class="btn btn-custom btn-primary ">Resend Email</button>
+                </div>
+                <div class="hidData d-flex flex-column align-items-center">
+
+                    <p class="hidPara"> Didn t receive the verification code? <button
+                            class="btn btn-customm btn-primary" id="resendEmail">Resend Code</button> </p>
+                    <!-- Add OTP input field -->
+                    <input style="width:200px; margin-top:10px; margin-bottom:10px;" type="tel" id="otp" name="otp"
+                        class="hidInput form-control text-center" placeholder="Enter your OTP" required>
+                    <!-- Error div for displaying OTP validation error -->
+                    <div id="otpError" style="color: red; font-size:14px;"></div>
+                    <button class="hidButton btn btn-custom btn-primary" style="margin-top:5px;" id="verifyOtp">Verify
+                        OTP</button>
+
+                    <button class="showButton btn btn-custom btn-primary" id="verifyOtp" style="display:none;">Login To
+                        Dashboard</button>
                 </div>
             </div>
         </div>
     </div>
 </div>
->
+
+
 
 
 <?php
-    return ob_get_clean();
+return ob_get_clean();
 }
 
 add_shortcode('custom_email_form', 'custom_email_form_shortcode');
-
 
 ?>
