@@ -19,6 +19,8 @@ jQuery(document).ready(function ($) {
     var business_info_choice = $("#business_info_choice").val();
     var businessError = jQuery("#business-name-error-message");
     var loader = $(".loader");
+    var userIdGlobal;
+    var businessIdGlobal;
 
     // -------------------Businessinfo Info Conditions--------------------------------------
 
@@ -26,10 +28,7 @@ jQuery(document).ready(function ($) {
       businessError.text("Please Fill The Business Name!");
       return false;
     }
-    if (
-      businessError.html().trim() ==
-      "Company Name already exists. Please choose a different one."
-    ) {
+    if (businessError.html().trim() == "Company Name already exists.") {
       return false;
     }
 
@@ -66,8 +65,9 @@ jQuery(document).ready(function ($) {
 
         // Access the 'data' property inside the parsed response
         var dataInsideData = responseData.data;
-
-        console.log(dataInsideData);
+        userIdGlobal = responseData.data;
+        //alert(userIdGlobal);
+        console.log(typeof dataInsideData);
 
         // Check if any field is empty
         if (
@@ -91,55 +91,34 @@ jQuery(document).ready(function ($) {
           return false;
         }
 
-        // SECOND Ajax Call that is storing personal information to lOCAL wp cUSTOM tAble
-        $.ajax({
-          type: "post",
-          url: customFormFullApi.ajaxurl,
-          data: {
-            action: "custom_form_ajax",
-            first_name: first_name,
-            last_name: last_name,
-            email: email,
-            phone_number: phone_number,
-            password: password,
-            terms_and_conditions: terms_and_conditions,
-            //security: $("#security").val(),
-          },
-          success: function (response) {
-            if (response === "success") {
-              //alert("Personal Info submitted successfully!");
-              // alert(response);
-            } else {
-              //alert("Error While Submmiting Personal Info!");
-              //  alert(response);
-            }
-          },
-        });
-
-        // Third Ajax Call to Storing user id (data) in sessions
+        // Third Ajax Call to Storing user id (data) in sessions and database
         $.ajax({
           type: "post",
           url: customFormFullApi.ajaxurl,
           data: {
             action: "store_data_in_options_table",
             dataInsideData: dataInsideData,
+            email: email,
           },
           success: function (storeResponse) {
+            // alert(storeResponse);
             console.log(
               "Data stored in options table (UserID):",
               storeResponse
             );
+
             // Forth Ajax Call to Storing business name and business type with the help of userid
             $.ajax({
               type: "post",
               url: customFormFull2Api.ajaxurl,
               data: {
                 action: "custom_form_ajax_full_form_two",
-
+                userIdGlobal: userIdGlobal,
                 email: email,
                 phone: phone_number,
                 business_name: business_name,
                 business_info_choice: business_info_choice,
+                //business_info_choice: "1623770635155",
               },
 
               success: function (response) {
@@ -147,19 +126,21 @@ jQuery(document).ready(function ($) {
                 var responseData = JSON.parse(response.data.body);
                 // Access the 'data' property inside the parsed response
                 var dataInsideData = responseData.data;
-                //console.log(responseData);
+                businessIdGlobal = responseData.data;
+                //  alert(businessIdGlobal);
                 console.log(dataInsideData);
 
-                // Fifth Ajax Call to Storing to Storing user bussinessid (data) to Sesssions
+                // Fifth Ajax Call Storing user bussinessid (data) to Sesssions
                 $.ajax({
                   type: "post",
                   url: customFormFullApi.ajaxurl,
                   data: {
                     action: "store_business_data_in_options_table",
                     dataInsideData: dataInsideData,
+                    email: email,
                   },
                   success: function (storeResponse) {
-                    //alert(storeResponse);
+                    //  alert(storeResponse);
                     console.log(
                       "Data stored in session bussiness",
                       storeResponse
@@ -170,11 +151,12 @@ jQuery(document).ready(function ($) {
                       url: customFormFull2Api.ajaxurl,
                       data: {
                         action: "function_opt",
+                        user_id_global: userIdGlobal,
+                        business_id_global: businessIdGlobal,
                       },
 
                       success: function (response) {
-                        window.location.href =
-                          customFormFull2Api.verification_url;
+                        jQuery(".putEmail").text(email);
                         console.log(response);
                       },
                       complete: function () {
@@ -183,17 +165,6 @@ jQuery(document).ready(function ($) {
                       },
                     });
                   },
-                });
-                // Seven Ajax Call to store business name and business type with that email
-                $.ajax({
-                  type: "post",
-                  url: customFormFull2Api.ajaxurl,
-                  data: {
-                    action: "custom_2form_ajax",
-                    business_name: business_name,
-                    business_info_choice: business_info_choice,
-                  },
-                  success: function (response) {},
                 });
               },
             });
