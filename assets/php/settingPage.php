@@ -6,8 +6,7 @@ function custom_settings_page()
 
 
 <div class="wrap">
-    <img style="width:160px; margin-top:10px;" src="<?php echo plugins_url('./assets/images/logo.png', __FILE__); ?>"
-        alt="">
+    <img style="width:160px; margin-top:10px;" src="<?php echo plugins_url('../images/logo.svg', __FILE__); ?>" alt="">
     <h1
         style="color:#171046; word-spacing:3px;font-size:23px;border:1px solid #00000033; padding:5px; width:230px; margin-top:20px; margin-bottom:30px; font-weight:700;">
         <span style="color:#23DC32;">Saasy POS</span>
@@ -74,14 +73,14 @@ function custom_settings_page_init()
 
     add_settings_section(
         'section_three', // ID
-        'Email Verification Page URL', // Title
+        'Redirect Page URL On Success :', // Title
         'section_three_callback', // Callback function
         'custom_settings_page' // Page
     );
 
     add_settings_field(
         'email_verification_url', // ID
-        'Email Verification URL', // Title
+        'Redirect Page URL', // Title
         'email_verification_url_callback', // Callback function
         'custom_settings_page', // Page
         'section_three' // Section
@@ -123,7 +122,7 @@ function api_url_callback()
 
 function section_three_callback()
 {
-    echo '<p>Enter Email Verification Page URL:</p>';
+    // echo '<p>Enter Redirect Page URL On Success :</p>';
 }
 
 function email_verification_url_callback()
@@ -172,5 +171,81 @@ $unserialized_value = maybe_unserialize($serialized_value);
 
 //$full = $api_url . "IsUserExist";
 //var_dump($full);
+
+// -------------------------------------------------------------------------------------
+// Admin Menu & Page
+add_action('admin_menu', 'custom_dashboard_table_menu');
+
+function custom_dashboard_table_menu()
+{
+    $icon_url = 'dashicons-admin-users'; // Replace with your chosen Dashicon
+
+    add_menu_page(
+        'Custom Registration Data',
+        'Saasy User Db',
+        'manage_options',
+        'custom-registration-data',
+        'custom_registration_data_page',
+        $icon_url
+    );
+}
+
+function custom_registration_data_page()
+{
+    global $wpdb;
+    $table_name = $wpdb->prefix . 'custom_registration_data';
+    $data = $wpdb->get_results("SELECT * FROM $table_name", ARRAY_A);
+
+    echo '<div class="wrap">';
+    echo '<h2>Saasy User Db</h2>';
+    echo '<style>
+            .wp-list-table {
+                border-collapse: collapse;
+                width: 100%;
+                margin-top: 20px;
+            }
+            .wp-list-table thead th {
+                background-color: #f7f7f7;
+                border: 1px solid #e3e3e3;
+                padding: 10px;
+                text-align: left;
+            }
+            .wp-list-table tbody td {
+                border: 1px solid #e3e3e3;
+                padding: 10px;
+            }
+        </style>';
+    echo '<table class="wp-list-table widefat fixed striped">';
+    echo '<thead><tr><th>ID</th><th>First Name</th><th>Last Name</th><th>Email</th><th>Phone Number</th><th>Password</th><th>Terms and Conditions</th><th>Saasy User ID</th><th>Business Name</th><th>Business Info Choice</th><th>Business ID</th><th>Verification Status</th><th>Registration Time</th></tr></thead>';
+    echo '<tbody>';
+    foreach ($data as $row) {
+        echo '<tr>';
+        echo '<td>' . esc_html($row['id']) . '</td>';
+        echo '<td>' . esc_html($row['first_name']) . '</td>';
+        echo '<td>' . esc_html($row['last_name']) . '</td>';
+        echo '<td>' . esc_html($row['email']) . '</td>';
+        echo '<td>' . esc_html($row['phone_number']) . '</td>';
+        echo '<td>' . esc_html($row['password']) . '</td>';
+        echo '<td>' . ($row['terms_and_conditions'] ? 'Yes' : 'No') . '</td>';
+        echo '<td>' . esc_html($row['saasy_user_id']) . '</td>';
+        echo '<td>' . esc_html($row['business_name']) . '</td>';
+        echo '<td>' . esc_html($row['business_info_choice']) . '</td>';
+        echo '<td>' . esc_html($row['business_id']) . '</td>';
+        echo '<td>' . ($row['verification_status'] ? 'Verified' : 'Not Verified') . '</td>';
+        echo '<td>' . esc_html($row['registration_time']) . '</td>';
+        echo '</tr>';
+    }
+    echo '</tbody>';
+    echo '</table>';
+    echo '</div>';
+}
+
+// function custom_table_delete() {
+//     global $wpdb;
+//     $table_name = $wpdb->prefix . 'custom_registration_data';
+//     $sql = "DROP TABLE IF EXISTS $table_name;";
+//     $wpdb->query($sql);
+// }
+// register_deactivation_hook(__FILE__, 'custom_table_delete');
 
 ?>

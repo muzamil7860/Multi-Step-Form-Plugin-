@@ -1,3 +1,9 @@
+jQuery(window).on('load', function() {
+
+		jQuery('.loader').css('display','none');
+  });
+
+
 document
   .getElementById("custom-registration-form")
   .addEventListener("keydown", function (e) {
@@ -105,7 +111,7 @@ jQuery(document).ready(function ($) {
 });
 
 // Add this function to your existing script
-function selectBusinessInfo(choice) {
+function selectBusinessInfoTest(choice) {
   // You can access the selected choice here
   console.log("Selected Business Info:", choice);
   jQuery("#business_info_choice").val(choice);
@@ -201,26 +207,26 @@ function validateStep1() {
       password !== confirmPassword
     ) {
       if (lastName === "") {
-        alpha.text("Please Fill The Last Name !");
+        alpha.text("Please Fill The Last Name!");
       }
 
       if (firstName === "") {
-        beta.text("Please Fill The First Name !");
+        beta.text("Please Fill The First Name!");
       }
 
       if (phoneNumber === "") {
-        ceta.text("Please Fill The Phone Number !");
-        console.log(phoneNumber.length);
+        ceta.text("Please Fill The Phone Number!");
+        //    console.log(phoneNumber.length);
       }
 
       if (email === "") {
-        deta.text("Please Fill The Email !");
+        deta.text("Please Fill The Email!");
       }
       if (password === "") {
-        feta.text("Please Fill The Password !");
+        feta.text("Please Fill The Password!");
       }
       if (confirmPassword === "") {
-        eeta.text("Please Fill The Confirm Password !");
+        eeta.text("Please Fill The Confirm Password!");
       }
 
       return false;
@@ -232,19 +238,45 @@ function validateStep1() {
     }
 
     if (!emailRegex.test(email)) {
-      alert("Please enter a valid email address.");
+      // alert("Please enter a valid email address.");
+      toastr.error(
+        "Please enter a valid email address.",
+        "Action Needed!"
+        //
+      );
       return false;
     }
 
     // Check if the terms and conditions checkbox is checked
     if (!termsCheckbox.checked) {
       toastr.error(
-        "Please agree to the terms and conditions.",
-        "Terms And Conditions!"
+        "To continue, please check the box to agree to our Terms of Service & Privacy Policy.",
+        "Action Needed!"
+        //
       );
       return false;
     }
+	//-----------------------------------------------------------------------------
+  //handeling password
+  // Regular expressions for validation
+  var uppercaseRegex = /[A-Z]/;
+  var lowercaseRegex = /[a-z]/;
+  var digitRegex = /\d/;
+  var specialCharRegex = /[!@#$%^&*()_+{}\[\]:;<>,.?~\\/-]/;
+  
 
+  // Check if all criteria are met
+  if (
+    password.length >= 8 &&
+    uppercaseRegex.test(password) &&
+    lowercaseRegex.test(password) &&
+    digitRegex.test(password) &&
+    specialCharRegex.test(password)
+  ) {
+  } else {
+    return false;
+  }
+  //-----------------------------------------------------------------------------
     return true;
   }
 
@@ -254,6 +286,7 @@ function validateStep1() {
   ) {
     return false;
   }
+
 }
 
 // ---------------------------------------------------------------------------------------------------
@@ -266,14 +299,10 @@ function validateStep2() {
   // Add any additional validation logic for Step 2 if needed
 
   if (businessName === "") {
-    // alert("Please fill in all fields for Step 2.");
     businessError.text("Please Fill The Business Name!");
     return false;
   }
-  if (
-    businessError.html().trim() ==
-    "Company Name already exists. Please choose a different one."
-  ) {
+  if (businessError.html().trim() == "Company Name already exists.") {
     return false;
   }
 
@@ -314,6 +343,9 @@ function nextStep() {
     });
 
     jQuery("#firstClass").removeClass("fa-1").addClass("fa-check");
+    // jQuery("#theOne").css("padding", "12px !important");
+    // jQuery("#theOne").removeClass(".theOne");
+    // jQuery("#firstClass").css("font-size", "14px !important");
 
     jQuery("#secondClass").css({
       color: "white",
@@ -359,5 +391,7 @@ function emailStep() {
   if (validateStep2()) {
     jQuery("#submit-form").show();
     jQuery("#custom-registration-form").hide();
+    jQuery(".main-container1").hide();
+    jQuery(".main-container-email").show();
   }
 }

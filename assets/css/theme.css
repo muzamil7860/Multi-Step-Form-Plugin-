@@ -1,62 +1,7 @@
-/* @media (min-width: 768px) {
-  .main-container1 {
-    height: 130dvh !important;
-  }
-}
-
-@media (min-width: 480px) and (max-width: 768px) {
-  .main-container1 {
-    height: 120dvh;
-  }
-}
-
-@media (max-width: 480px) {
-  .main-container1 {
-    height: 120dvh;
-  }
-} */
-
-/* ------------------------------------ */
-/* 
-@media (min-width: 768px) {
-  .main-container {
-    height: 100dvh !important;
-  }
-  .columns-class-email {
-    background-color: white;
-    border-radius: 5px;
-    height: 90dvh;
-    margin-top: 30px !important;
-  }
-}
-
-@media (min-width: 480px) and (max-width: 768px) {
-  .main-container {
-    height: 120dvh;
-  }
-  .columns-class-email {
-    background-color: white;
-    border-radius: 5px;
-    height: 100dvh;
-    margin-top: 50px !important;
-  }
-}
-
-@media (max-width: 480px) {
-  .main-container {
-    height: 120dvh;
-  }
-  .columns-class-email {
-    background-color: white;
-    border-radius: 5px;
-    height: 100dvh;
-    margin-top: 50px !important;
-  }
-} */
-
 .columns-class-email {
   background-color: white;
   border-radius: 5px;
+  height: 100%;
 }
 
 #resendEmail {
@@ -75,16 +20,10 @@
   background-color: red !important;
 }
 
-/* eroor messages below div css  */
-/* 
-#name-error-message {
-  color: red;
-  font-size: 14px;
-  height: 10px;
-  margin-top: 5px;
-} */
-
-/* otp styling  */
+.toast-message {
+  line-height: 20px;
+  font-family: "Rubik", sans-serif;
+}
 
 /* Add your custom styles for OTP input here */
 .otp-container {
@@ -111,9 +50,61 @@
 .otp-button {
   margin-top: 10px;
   padding: 10px 20px;
-  background-color: #32dc23;
+  background-color: #23dc32;
   color: #fff;
   border: none;
   border-radius: 5px;
   cursor: pointer;
+}
+
+/* ///////////////////////////////////////////// */
+
+.theOne {
+  padding: 15px;
+}
+
+.theTwo {
+  padding: 15px;
+}
+
+.theThree {
+  padding: 15px;
+}
+
+/* small buttons style  */
+.small-buttons-no {
+  border: 1px solid black;
+  border-radius: 5px;
+  font-size: 14px;
+  color: white;
+  background-color: #23dc32;
+  border-color: #23dc32;
+  padding-left: 15px;
+  padding-right: 15px;
+  margin-top: 5px;
+}
+
+.small-buttons-no:hover {
+  border: 1px solid black;
+  border-radius: 5px;
+  font-size: 14px;
+  color: white;
+  background-color: #23dc32;
+  border-color: #23dc32;
+  padding-left: 15px;
+  padding-right: 15px;
+  margin-top: 5px;
+}
+
+.small-buttons-yes {
+  border: 1px solid black;
+  border-radius: 5px;
+  font-size: 14px;
+  color: #23dc32;
+  background-color: white;
+  border-color: #23dc32;
+  padding-left: 15px;
+  padding-right: 15px;
+  margin-right: 5px;
+  margin-top: 5px;
 }

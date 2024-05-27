@@ -19,9 +19,7 @@ jQuery(document).ready(function ($) {
         if (response == "true") {
           //alert(response);
           // Email exists, show error message
-          errorContainer.text(
-            "Company Name already exists. Please choose a different one."
-          );
+          errorContainer.text("Company Name already exists.");
           errorContainer.css("color", "red");
         } else {
           // Email is unique, clear error message
@@ -29,7 +27,7 @@ jQuery(document).ready(function ($) {
         }
       },
       error: function (error) {
-        console.log(error);
+        //  console.log(error);
       },
       complete: function () {
         // Hide overlay and loader after the AJAX request is complete

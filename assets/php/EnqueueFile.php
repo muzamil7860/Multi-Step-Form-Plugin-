@@ -16,13 +16,13 @@ function enqueue_saasy_scripts()
     wp_enqueue_script('bootstrap-js', 'https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js', array('jquery'), '', true);
 
     //Custom Javascript
-    wp_enqueue_script('custom-registration-scripts', plugins_url('./assets/js/script.js', __FILE__), array('jquery'), null, true);
-    wp_enqueue_script('custom-password-scripts', plugins_url('./assets/js/PasswordConfirmation.js', __FILE__), array('jquery'), null, true);
-    wp_enqueue_script('personal-form-scripts', plugins_url('./assets/js/PersonalForm.js', __FILE__), array('jquery'), null, true);
+    wp_enqueue_script('custom-registration-scripts', plugins_url('../js/script.js', __FILE__), array('jquery'), '1.00.2', true);
+    wp_enqueue_script('custom-password-scripts', plugins_url('../js/PasswordConfirmation.js', __FILE__), array('jquery'), null, true);
+    wp_enqueue_script('personal-form-scripts', plugins_url('../js/PersonalForm.js', __FILE__), array('jquery'), null, true);
     //Custom Css
-    wp_enqueue_style('custom-styles', plugin_dir_url(__FILE__) . './assets/css/style.css');
-    wp_enqueue_style('custom-jelly-styles', plugin_dir_url(__FILE__) . './assets/css/loaderStyle.css');
-    wp_enqueue_style('theme-css', plugin_dir_url(__FILE__) . './assets/css/theme.css');
+    wp_enqueue_style('custom-styles', plugin_dir_url(__FILE__) . '../css/style.css');
+    wp_enqueue_style('custom-jelly-styles', plugin_dir_url(__FILE__) . '../css/loaderStyle.css');
+    wp_enqueue_style('theme-css', plugin_dir_url(__FILE__) . '../css/theme.css');
 
     //Enuqueue Toaster library Js
     wp_enqueue_script('toastrJs', 'https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js', array('jquery'));

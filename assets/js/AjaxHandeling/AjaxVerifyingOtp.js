@@ -37,12 +37,12 @@ jQuery(document).ready(function ($) {
           // Update the text content dynamically
 
           $(".inner-div-email h6").html(
-            '<h6 style="font-size:24px; font-weight:700; color:#32DC23; margin:0px; margin-bottom:5px">Your 30-day free trial has started!</h6>'
+            '<h6 style="font-size:24px; font-weight:500; color:#23DC32; margin:0px; margin-bottom:5px">Your 30-day free trial has started!</h6>'
           );
           $(".inner-div-email p").html(
-            "<p>Your free trial will end on <b>" +
+            "<p>Your free trial will end on <span style='font-weight:500'>" +
               formattedDate +
-              "</b><br>Please Explore SaasyPOS and feel free to contact us if you have any questions!<br> <span style='color:#32DC23'>Redirecting To Login Dashboard</span></p>"
+              "</span><br>Please Explore SaasyPOS and feel free to contact us if you have any questions!<br> <span style='color:#23DC32'>Redirecting To Login Dashboard</span></p>"
           );
 
           $(".hidPara").css("display", "none");
@@ -65,7 +65,7 @@ jQuery(document).ready(function ($) {
           //---------------------------------------------------------------
           $.ajax({
             type: "POST",
-            url: customFormFullApi.ajaxurl, // WordPress AJAX URL
+            url: customFormFull2Api.ajaxurl, // WordPress AJAX URL
             data: {
               action: "after_verify_otp", // Action to be handled in WordPress functions.php
             },
@@ -80,9 +80,12 @@ jQuery(document).ready(function ($) {
               console.log(bodyData);
 
               //  Redirect after a delay of 5 seconds (5000 milliseconds)
+              //setTimeout(function () {
+              //   window.location.href =
+              //     "https://preapp.saasypos.com/#/pages/signin";
+              // }, 5000);
               setTimeout(function () {
-                window.location.href =
-                  "https://preapp.saasypos.com/#/pages/signin";
+                window.location.href = customFormFull2Api.verification_url;
               }, 5000);
             },
             error: function (error) {

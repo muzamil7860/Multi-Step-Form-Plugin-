@@ -20,7 +20,7 @@ jQuery(document).ready(function ($) {
       return false;
     } else {
       ceta.text("");
-      console.log(phoneNumber);
+      //  console.log(phoneNumber);
       return true;
     }
   });
