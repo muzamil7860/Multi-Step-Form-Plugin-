@@ -5,6 +5,21 @@
 add_action('wp_ajax_after_verify_otp', 'after_verify_otp_callback');
 add_action('wp_ajax_nopriv_after_verify_otp', 'after_verify_otp_callback');
 
+<<<<<<< HEAD
+=======
+
+function saasy_json_decode_3ceta($encoded_array)
+{
+    $ok = json_decode($encoded_array, true);
+    $err_msg = json_last_error_msg();
+    if ($err_msg !== 'No error') {
+        $cleanedCookieValue = stripslashes($encoded_array);
+        $ok = json_decode($cleanedCookieValue, true);
+    }
+    return $ok;
+}
+
+>>>>>>> 36f7441ac0c1f73c69d7c9d24e3b12cdbe95048d
 function after_verify_otp_callback()
 {
 
@@ -21,10 +36,33 @@ function after_verify_otp_callback()
     $options = get_option('custom_settings');
     $api_url = isset($options['api_url']) ? esc_url($options['api_url']) : '';
     $full = $api_url . "FinishSignUpProcess";
+<<<<<<< HEAD
+=======
+	
+	$referer = '';
+    $custTrackingId = '';
+    $cuId = '';
+
+	$domain = $_SERVER['HTTP_HOST'];
+    $domain = str_replace('.', '_', $domain);
+    $cookie_name = $domain . '_session_tguid';
+    if ($_COOKIE[$cookie_name]) {
+        $existing_data = saasy_json_decode_3ceta($_COOKIE[$cookie_name]);
+        if ($existing_data) {
+            $referer = $existing_data['latest_referrer'];
+            $custTrackingId = $existing_data['saasy_session_tid'];
+            $cuId = $existing_data['ftc_session_guid'];
+        }
+    }
+>>>>>>> 36f7441ac0c1f73c69d7c9d24e3b12cdbe95048d
 
     $api_response = wp_remote_post($full, array(
         'body' => json_encode(array(
             "businessId" => $business_id,
+<<<<<<< HEAD
+=======
+			"CouponCode" => $custTrackingId,
+>>>>>>> 36f7441ac0c1f73c69d7c9d24e3b12cdbe95048d
             "NoOfLocations" => 1,
             "PerNoOfRegister" => 1,
             "NoOfRegisters" => 1,
@@ -71,9 +109,26 @@ function after_verify_otp_callback()
         'headers' => array('Content-Type' => 'application/json',
             'Wlid' => '94DE1528-DE42-498A-A07E-4A458E97240E',
         ),
+<<<<<<< HEAD
 		 'timeout' => 30, 
     ));
     wp_send_json_success($api_response);
+=======
+        'timeout' => 30,
+    ));
+    if (is_wp_error($api_response)) {
+
+        $error_messages[] = 'API Request Failed: ' . $api_response->get_error_message();
+        $sending_errors = array(
+            "error" => true,
+            "error_messages" => $error_messages,
+        );
+        wp_send_json($sending_errors);
+
+    } else {
+        wp_send_json($api_response);
+    }
+>>>>>>> 36f7441ac0c1f73c69d7c9d24e3b12cdbe95048d
 }
 
 //--------------------------------------------------------

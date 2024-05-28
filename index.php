@@ -1,9 +1,9 @@
 <?php
 
 /*
-Plugin Name: Sassy Pro SignUp
-Description: Sassy Pro Signup System For Signing up .
-Version: 1.0.0
+Plugin Name: Lincsell SignUp
+Description: Lincsell Signup System For Signing up .
+Version: 1.0.5
 Author: Zilon Solutions
  */
 
@@ -68,6 +68,13 @@ function custom_registration_plugin_activate()
             business_info_choice varchar(50) NOT NULL DEFAULT '1623770624890',
             business_id varchar(50) NOT NULL,
             verification_status tinyint(1) NOT NULL DEFAULT 0,
+<<<<<<< HEAD
+=======
+            CouponCode varchar(100),
+            Referer varchar(100),
+            CustTrackingId varchar(100),
+            CuId varchar(100),
+>>>>>>> 36f7441ac0c1f73c69d7c9d24e3b12cdbe95048d
             registration_time timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
             PRIMARY KEY  (id),
             UNIQUE KEY email (email)
@@ -81,10 +88,15 @@ function custom_registration_plugin_activate()
     $default_options = array(
         'save_data_to_db' => 1,
         'save_data_to_api' => 1,
+<<<<<<< HEAD
 		'api_url' => 'https://connect360.azure-api.net/auth-svc/api/',
         'email_verification_url' => 'https://app.saasypos.com/',
 
 
+=======
+        'api_url' => 'https://lsapim.azure-api.net/auth-svc/api/',
+        'email_verification_url' => 'https://app.lincsell.com/',
+>>>>>>> 36f7441ac0c1f73c69d7c9d24e3b12cdbe95048d
     );
 
     // Check if options exist, if not, add them
@@ -107,6 +119,11 @@ function custom_registration_plugin_deactivate()
     global $wpdb;
 
     $table_name = $wpdb->prefix . 'custom_registration_data';
+<<<<<<< HEAD
    // $wpdb->query("DROP TABLE IF EXISTS $table_name");
     //$wpdb->query("DELETE FROM $table_name");
+=======
+ //   $wpdb->query("DROP TABLE IF EXISTS $table_name");
+ //   $wpdb->query("DELETE FROM $table_name");
+>>>>>>> 36f7441ac0c1f73c69d7c9d24e3b12cdbe95048d
 }

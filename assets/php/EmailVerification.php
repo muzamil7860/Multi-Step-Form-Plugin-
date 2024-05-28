@@ -2,7 +2,11 @@
 
 function custom_email_form_shortcode()
 {
+<<<<<<< HEAD
  if (!session_id()) {
+=======
+    if (!session_id()) {
+>>>>>>> 36f7441ac0c1f73c69d7c9d24e3b12cdbe95048d
         session_start();
     }
 

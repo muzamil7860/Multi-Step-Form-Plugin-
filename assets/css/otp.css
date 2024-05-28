@@ -1,0 +1,53 @@
+@media (max-width: 480px) {
+  .otpBox {
+    width: 46px;
+    height: 46px;
+    text-align: center;
+    font-size: 15px;
+    margin: 0 3px;
+    border: 2px solid #ccc !important;
+    border-radius: 14px !important;
+	background-color:none !important;
+    padding: 0px;
+  }
+}
+
+@media (min-width: 480px) {
+  .otpBox {
+    width: 50px;
+    height: 50px;
+    text-align: center;
+    font-size: 18px;
+    margin: 0 5px;
+    border: 2px solid #ccc !important;
+    border-radius: 14px !important;
+	background-color:none !important;
+  }
+}
+#otpContainer {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.otpBox:focus,
+.otpBox.visited {
+  background-color: white;
+}
+
+.otpBox:focus {
+  border-color: #1429ef;
+}
+
+#verifyOtp1 {
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 5px;
+}

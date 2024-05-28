@@ -1,7 +1,134 @@
+<<<<<<< HEAD
 jQuery(window).on('load', function() {
 
 		jQuery('.loader').css('display','none');
   });
+=======
+//comment added   
+console.log("Script Working Successfully version time22");         
+
+
+
+jQuery("#business_name").on("change", function () {
+	var errorContainer = jQuery("#business-name-error-message");
+	errorContainer.text("");
+});
+
+jQuery(".close-button").on("click", function () {
+	jQuery(".loader").css('display','block');
+  //   jQuery(".monster").delay(500).hide(0);
+  //   jQuery(".page-template").css("overflow", "auto");
+  location.reload(true); // true parameter forces a reload from the server and not from the cache
+});
+
+// Show the .monster element with a delay
+//
+/*
+jQuery("#submit-button-trial").on("click", function () {
+jQuery(".loader").show();
+  jQuery(".monster").show();
+	jQuery(".firstStep").show();
+  jQuery(".page-template").css("overflow", "hidden");
+	jQuery(".loader").hide();
+});
+*/
+
+jQuery("#submit-button-trial").on("click", function () {
+  jQuery('#header_custom').css('z-index', '0');
+  jQuery("#monsterDiv").show();
+// 	 if (jQuery('#monsterDiv').css('display') !== 'none') {
+//         $('#back-to-top').css('display', 'none');
+//       }
+  var div = document.getElementById("monsterDiv");
+  var backgroundImage = new Image();
+  backgroundImage.src = getComputedStyle(div)
+    .backgroundImage.replace('url("', "")
+    .replace('")', "");
+
+  backgroundImage.onload = function () {
+    jQuery(".firstStep").show();
+	jQuery(".close-button").show();
+	jQuery("#first_name").focus();
+
+  };
+
+  jQuery(".page-template").css("overflow", "hidden");
+});
+
+
+jQuery("#button_header_cus_2").on("click", function () {
+  jQuery('#header_custom').css('z-index', '0');
+  jQuery("#monsterDiv").show();
+// 	 if (jQuery('#monsterDiv').css('display') !== 'none') {
+//         $('#back-to-top').css('display', 'none');
+//       }
+  var div = document.getElementById("monsterDiv");
+  var backgroundImage = new Image();
+  backgroundImage.src = getComputedStyle(div)
+    .backgroundImage.replace('url("', "")
+    .replace('")', "");
+
+  backgroundImage.onload = function () {
+    jQuery(".firstStep").show();
+	jQuery(".close-button").show();
+	jQuery("#first_name").focus();
+  };
+
+  jQuery(".page-template").css("overflow", "hidden");
+});
+
+
+jQuery("#button_header_cus_3").on("click", function () {
+  jQuery("#stickey_sec").css("display", "none");
+  jQuery(".eael-tabs-nav").css("display", "none");
+  jQuery('#header_custom_pd').css('z-index', '0');
+  jQuery('#header_custom_pm').css('z-index', '0');
+  jQuery(".eael-tabs-nav").css("z-index", "1");
+  jQuery("#monsterDiv").show();
+// 	 if (jQuery('#monsterDiv').css('display') !== 'none') {
+//         $('#back-to-top').css('display', 'none');
+//       }
+  var div = document.getElementById("monsterDiv");
+  var backgroundImage = new Image();
+  backgroundImage.src = getComputedStyle(div)
+    .backgroundImage.replace('url("', "")
+    .replace('")', "");
+
+  backgroundImage.onload = function () {
+    jQuery(".firstStep").show();
+	jQuery(".close-button").show();
+	jQuery("#first_name").focus();
+  };
+
+  jQuery(".page-template").css("overflow", "hidden");
+});
+
+jQuery("#button_header_cus_4").on("click", function () {
+  jQuery("#stickey_sec").css("display", "none");
+  jQuery(".eael-tabs-nav").css("display", "none");
+  jQuery('#header_custom_pd').css('z-index', '0');
+  jQuery('#header_custom_pm').css('z-index', '0');
+  jQuery("#monsterDiv").show();
+// 	 if (jQuery('#monsterDiv').css('display') !== 'none') {
+//         $('#back-to-top').css('display', 'none');
+//       }
+  var div = document.getElementById("monsterDiv");
+  var backgroundImage = new Image();
+  backgroundImage.src = getComputedStyle(div)
+    .backgroundImage.replace('url("', "")
+    .replace('")', "");
+
+  backgroundImage.onload = function () {
+    jQuery(".firstStep").show();
+	jQuery(".close-button").show();
+	jQuery("#first_name").focus();
+  };
+
+  jQuery(".page-template").css("overflow", "hidden");
+});
+
+
+>>>>>>> 36f7441ac0c1f73c69d7c9d24e3b12cdbe95048d
 
 
 document
@@ -12,6 +139,17 @@ document
       return false;
     }
   });
+
+// var registrationForm = document.getElementById("custom-registration-form");
+
+// if (registrationForm) {
+//   registrationForm.addEventListener("keydown", function (e) {
+//     if (e.key === "Enter") {
+//       e.preventDefault();
+//       return false;
+//     }
+//   });
+// }
 
 function showPasswordStrengthMeter() {
   var passwordStrength = document.querySelector(".password-strength");
@@ -25,7 +163,7 @@ function checkPasswordStrength() {
   var label = document.getElementById("password-strength-label");
   var progressBar = meter.querySelector(".progress-bar");
   var feedbackDiv = document.getElementById("password-feedback");
-
+  feedbackDiv.style.color = "#B3B0B0";
   var strength = 0;
 
   // Check for various criteria and assign strength score
@@ -95,13 +233,16 @@ function checkPasswordStrength() {
 }
 
 //Attach the checkPasswordStrength function to the input event of the password field
-document
-  .getElementById("password")
-  .addEventListener("input", checkPasswordStrength);
+var passwordVar = document.getElementById("password");
+if (passwordVar) {
+  document
+    .getElementById("password")
+    .addEventListener("input", checkPasswordStrength);
+}
 
 jQuery(document).ready(function ($) {
-  jQuery(".Option3").css("background-color", "rgb(35 220 50 / 30%)");
-  jQuery(".Option3").css("border-color", "#23DC32");
+  jQuery(".Option3").css("background-color", "#142aef1a");
+  jQuery(".Option3").css("border-color", "#1429ef");
 
   jQuery(".Option1").css("background-color", "white");
   jQuery(".Option1").css("border-color", "#ccc");
@@ -119,8 +260,8 @@ function selectBusinessInfoTest(choice) {
   console.log("Input test value:", test);
 
   if (choice == "1623770609262") {
-    jQuery(".Option1").css("background-color", "rgb(35 220 50 / 30%)");
-    jQuery(".Option1").css("border-color", "#23DC32");
+    jQuery(".Option1").css("background-color", "#142aef1a");
+    jQuery(".Option1").css("border-color", "#1429ef");
 
     jQuery(".Option2").css("background-color", "white");
     jQuery(".Option2").css("border-color", "#ccc");
@@ -128,8 +269,8 @@ function selectBusinessInfoTest(choice) {
     jQuery(".Option3").css("background-color", "white");
     jQuery(".Option3").css("border-color", "#ccc");
   } else if (choice == "1623770635155") {
-    jQuery(".Option2").css("background-color", "rgb(35 220 50 / 30%)");
-    jQuery(".Option2").css("border-color", "#23DC32");
+    jQuery(".Option2").css("background-color", "#142aef1a");
+    jQuery(".Option2").css("border-color", "#1429ef");
 
     jQuery(".Option1").css("background-color", "white");
     jQuery(".Option1").css("border-color", "#ccc");
@@ -137,8 +278,8 @@ function selectBusinessInfoTest(choice) {
     jQuery(".Option3").css("background-color", "white");
     jQuery(".Option3").css("border-color", "#ccc");
   } else if (choice == "1623770624890") {
-    jQuery(".Option3").css("background-color", "rgb(35 220 50 / 30%)");
-    jQuery(".Option3").css("border-color", "#23DC32");
+    jQuery(".Option3").css("background-color", "#142aef1a");
+    jQuery(".Option3").css("border-color", "#1429ef");
 
     jQuery(".Option1").css("background-color", "white");
     jQuery(".Option1").css("border-color", "#ccc");
@@ -148,11 +289,24 @@ function selectBusinessInfoTest(choice) {
   }
 }
 
-jQuery(document).ready(function ($) {
-  Inputmask({
-    mask: "(999) 999-9999",
-  }).mask("#phone_number");
+// jQuery(document).ready(function ($) {
+//   Inputmask({
+//     mask: "(999) 999-9999",
+//   }).mask("#phone_number");
+// });
+
+jQuery("#phone_number").on("input", function () {
+  let value = jQuery(this).val().replace(/\D/g, "").substring(0, 10);
+  let formattedValue = "";
+  for (let i = 0; i < value.length; i++) {
+    if (i == 3 || i == 6) {
+      formattedValue += "-";
+    }
+    formattedValue += value[i];
+  }
+  jQuery(this).val(formattedValue);
 });
+
 
 function togglePasswordVisibility(fieldId) {
   var passwordField = document.getElementById(fieldId);
@@ -185,9 +339,8 @@ function validateStep1() {
   var termsCheckbox = document.getElementById("terms_and_conditions");
   var errorContainerEmail = jQuery("#email-error-message");
   var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-  // var phoneNumberJquery = jQuery("#phone_number");
-  // console.log(phoneNumberJquery.length);
+  var businessName = document.getElementById("business_name").value;
+  var businessError = jQuery("#business-name-error-message");
 
   var alpha = jQuery("#lastNameError");
   var beta = jQuery("#name-error-message");
@@ -196,15 +349,17 @@ function validateStep1() {
   var eeta = jQuery("#password-error-message");
   var feta = jQuery("#password-feedback");
 
+  // alert(email);
   if (errorContainerEmail.html().trim() == "") {
     if (
       firstName === "" ||
       lastName === "" ||
-      email === "" ||
+      email == "" ||
       phoneNumber === "" ||
-      password === "" ||
-      confirmPassword === "" ||
-      password !== confirmPassword
+      password === ""
+      // ||
+      // confirmPassword === "" ||
+      // password !== confirmPassword
     ) {
       if (lastName === "") {
         alpha.text("Please Fill The Last Name!");
@@ -216,6 +371,7 @@ function validateStep1() {
 
       if (phoneNumber === "") {
         ceta.text("Please Fill The Phone Number!");
+<<<<<<< HEAD
         //    console.log(phoneNumber.length);
       }
 
@@ -223,6 +379,20 @@ function validateStep1() {
         deta.text("Please Fill The Email!");
       }
       if (password === "") {
+=======
+      }
+
+      if (email == "") {
+        deta.text("Please Fill The Email!");
+        jQuery("#continueProcessButtonClose").hide();
+        jQuery("#continueProcessButton").hide();
+        jQuery("#tempClass").show();
+        console.log(email);
+        console.log(eeta);
+      }
+      if (password === "") {
+        feta.css("color", "red");
+>>>>>>> 36f7441ac0c1f73c69d7c9d24e3b12cdbe95048d
         feta.text("Please Fill The Password!");
       }
       if (confirmPassword === "") {
@@ -238,15 +408,34 @@ function validateStep1() {
     }
 
     if (!emailRegex.test(email)) {
+<<<<<<< HEAD
       // alert("Please enter a valid email address.");
       toastr.error(
         "Please enter a valid email address.",
         "Action Needed!"
         //
       );
+=======
+      //       toastr.error(
+      //         "Please enter a valid email address.",
+      //         "Action Needed!"
+      //       );
+      deta.text("Please enter a valid email address.");
+      //       jQuery("#continueProcessButtonClose").hide();
+      //       jQuery("#continueProcessButton").hide();
+      //       jQuery("#tempClass").show();
+>>>>>>> 36f7441ac0c1f73c69d7c9d24e3b12cdbe95048d
       return false;
     }
+    //-----------------------------------------------------------------------------
+    //handeling password
+    // Regular expressions for validation
+    var uppercaseRegex = /[A-Z]/;
+    var lowercaseRegex = /[a-z]/;
+    var digitRegex = /\d/;
+    var specialCharRegex = /[!@#$%^&*()_+{}\[\]:;<>,.?~\\/-]/;
 
+<<<<<<< HEAD
     // Check if the terms and conditions checkbox is checked
     if (!termsCheckbox.checked) {
       toastr.error(
@@ -254,6 +443,30 @@ function validateStep1() {
         "Action Needed!"
         //
       );
+=======
+    // Check if all criteria are met
+    if (
+      password.length >= 8 &&
+      uppercaseRegex.test(password) &&
+      lowercaseRegex.test(password) &&
+      digitRegex.test(password) &&
+      specialCharRegex.test(password)
+    ) {
+    } else {
+      jQuery("#password-feedback").css("color", "red");
+      return false;
+    }
+    //-----------------------------------------------------------------------------
+    if (businessName === "") {
+      businessError.text("Please Fill The Business Name!");
+      return false;
+    }
+//     if (businessError.html().trim() == "Company Name already exists.") {
+//       return false;
+//     }
+
+    if (businessError.html().trim() == "Please Fill The Business Name!") {
+>>>>>>> 36f7441ac0c1f73c69d7c9d24e3b12cdbe95048d
       return false;
     }
 	//-----------------------------------------------------------------------------
@@ -302,9 +515,15 @@ function validateStep2() {
     businessError.text("Please Fill The Business Name!");
     return false;
   }
+<<<<<<< HEAD
   if (businessError.html().trim() == "Company Name already exists.") {
     return false;
   }
+=======
+//   if (businessError.html().trim() == "Company Name already exists.") {
+//     return false;
+//   }
+>>>>>>> 36f7441ac0c1f73c69d7c9d24e3b12cdbe95048d
 
   if (businessError.html().trim() == "Please Fill The Business Name!") {
     return false;
@@ -318,7 +537,7 @@ function validateStep2() {
 //   if (validateStep1()) {
 //     jQuery("#step-1").hide();
 //     jQuery("#step-2").show();
-//     jQuery(".secondClass").css("background-color", "#23DC32");
+//     jQuery(".secondClass").css("background-color", "#1429ef");
 //     jQuery(".secondClass").css("color", "white");
 //     jQuery("#firstClass").removeClass("fa-1").addClass("fa-check");
 //     jQuery("#secondClass").css("color", "white");
@@ -329,15 +548,21 @@ function nextStep() {
   // Validate Step 1 before moving to Step 2
   if (validateStep1()) {
     // Hide Step 1 with transition
-    jQuery("#step-1").fadeOut(500, function () {
+   // jQuery("#step-1").fadeOut(500, function () {
       // Callback function after fadeOut is complete
       // Show Step 2 with transition
-      jQuery("#step-2").fadeIn(500);
-    });
+      //jQuery("#step-2").fadeIn(500);
+      //--------------------------------------------------------
+     //  jQuery("#submit-form").show();
+     // jQuery("#custom-registration-form").hide();
+     // jQuery(".firstStep").hide();
+     // jQuery(".main-container-email").show();
+      //--------------------------------------------------------
+  //  });
 
     // Additional styling changes with transitions
     jQuery(".secondClass").css({
-      "background-color": "#23DC32",
+      "background-color": "#1429ef",
       color: "white",
       transition: "background-color 0.5s, color 0.5s",
     });
@@ -354,14 +579,22 @@ function nextStep() {
   }
 }
 
-// function prevStep() {
-//   jQuery("#step-2").hide();
-//   jQuery("#step-1").show();
-//   jQuery(".secondClass").css("background-color", "#DEF1FD");
-//   jQuery(".secondClass").css("color", "#9E9E9E");
-//   jQuery("#firstClass").removeClass("fa-check").addClass("fa-1");
-//   jQuery("#secondClass").css("color", "#23DC32");
-// }
+function changeEmail() {
+  // Hide Step 1 with transition
+  jQuery("#step-1").fadeIn(500, function () {
+    // Callback function after fadeOut is complete
+    // Show Step 2 with transition
+    //jQuery("#step-2").fadeIn(500);
+    //--------------------------------------------------------
+    jQuery("#submit-form").hide();
+    jQuery("#custom-registration-form").show();
+    jQuery(".firstStep").show();
+    jQuery(".main-container-email").hide();
+    jQuery("#email").val("");
+    jQuery("#business_name").val("");
+    //--------------------------------------------------------
+  });
+}
 
 function prevStep() {
   // Hide Step 2 with transition
@@ -381,7 +614,7 @@ function prevStep() {
   jQuery("#firstClass").removeClass("fa-check").addClass("fa-1");
 
   jQuery("#secondClass").css({
-    color: "#23DC32",
+    color: "#1429ef",
     transition: "color 0.5s",
   });
 }

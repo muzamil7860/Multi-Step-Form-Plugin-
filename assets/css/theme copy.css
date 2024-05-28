@@ -1,41 +1,22 @@
-<<<<<<< HEAD
-=======
-:root {
-  --main-background-color: white;
-  --resend-button-background: rgba(0, 0, 0, 0);
-  --resend-button-text-color: #1429ef;
-  --toast-error-background: red;
-  --otp-button-background: #1429ef;
-  --otp-button-text-color: #fff;
-  --small-buttons-no-background: #1429ef;
-  --small-buttons-no-text-color: white;
-  --small-buttons-yes-background: white;
-  --small-buttons-yes-text-color: #1429ef;
-}
-/* 
->>>>>>> 36f7441ac0c1f73c69d7c9d24e3b12cdbe95048d
 .columns-class-email {
-background-color: var(--main-background-color);
+  background-color: white;
   border-radius: 5px;
   height: 100%;
-<<<<<<< HEAD
 }
-=======
-} */
->>>>>>> 36f7441ac0c1f73c69d7c9d24e3b12cdbe95048d
 
 #resendEmail {
-  background-color: var(--resend-button-background) !important;
-  color: white;
-  border: none !important;
+  background-color: rgba(0, 0, 0, 0) !important;
+  color: #23dc32;
+  border: none !important ;
   font-weight: 500;
   text-decoration: underline;
   padding: 2px;
 }
-/* 
+
+/* toaster csss  */
+
 #toast-container > .toast-error {
   background-image: none !important;
-<<<<<<< HEAD
   background-color: red !important;
 }
 
@@ -45,11 +26,6 @@ background-color: var(--main-background-color);
 }
 
 /* Add your custom styles for OTP input here */
-=======
-  background-color: var(--toast-error-background) !important;
-} */
-
->>>>>>> 36f7441ac0c1f73c69d7c9d24e3b12cdbe95048d
 .otp-container {
   text-align: center;
   margin-top: 20px;
@@ -74,13 +50,8 @@ background-color: var(--main-background-color);
 .otp-button {
   margin-top: 10px;
   padding: 10px 20px;
-<<<<<<< HEAD
   background-color: #23dc32;
   color: #fff;
-=======
-  background-color: var(--otp-button-background);
-  color: var(--otp-button-text-color);
->>>>>>> 36f7441ac0c1f73c69d7c9d24e3b12cdbe95048d
   border: none;
   border-radius: 5px;
   cursor: pointer;
@@ -105,15 +76,9 @@ background-color: var(--main-background-color);
   border: 1px solid black;
   border-radius: 5px;
   font-size: 14px;
-<<<<<<< HEAD
   color: white;
   background-color: #23dc32;
   border-color: #23dc32;
-=======
-  color: var(--small-buttons-no-text-color);
-  background-color: var(--small-buttons-no-background);
-  border-color: var(--small-buttons-no-background);
->>>>>>> 36f7441ac0c1f73c69d7c9d24e3b12cdbe95048d
   padding-left: 15px;
   padding-right: 15px;
   margin-top: 5px;
@@ -123,15 +88,9 @@ background-color: var(--main-background-color);
   border: 1px solid black;
   border-radius: 5px;
   font-size: 14px;
-<<<<<<< HEAD
   color: white;
   background-color: #23dc32;
   border-color: #23dc32;
-=======
-  color: var(--small-buttons-no-text-color);
-  background-color: var(--small-buttons-no-background);
-  border-color: var(--small-buttons-no-background);
->>>>>>> 36f7441ac0c1f73c69d7c9d24e3b12cdbe95048d
   padding-left: 15px;
   padding-right: 15px;
   margin-top: 5px;
@@ -141,15 +100,9 @@ background-color: var(--main-background-color);
   border: 1px solid black;
   border-radius: 5px;
   font-size: 14px;
-<<<<<<< HEAD
   color: #23dc32;
   background-color: white;
   border-color: #23dc32;
-=======
-  color: var(--small-buttons-yes-text-color);
-  background-color: var(--small-buttons-yes-background);
-  border-color: var(--small-buttons-yes-background);
->>>>>>> 36f7441ac0c1f73c69d7c9d24e3b12cdbe95048d
   padding-left: 15px;
   padding-right: 15px;
   margin-right: 5px;

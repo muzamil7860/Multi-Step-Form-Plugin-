@@ -48,10 +48,27 @@ function function_opt_handler()
         'headers' => array('Content-Type' => 'application/json',
             'Wlid' => '94DE1528-DE42-498A-A07E-4A458E97240E',
         ),
+<<<<<<< HEAD
 		 'timeout' => 30,
 
     ));
     wp_send_json_success($api_response);
+=======
+        'timeout' => 30,
+    ));
+    if (is_wp_error($api_response)) {
+
+        $error_messages[] = 'API Request Failed: ' . $api_response->get_error_message();
+        $sending_errors = array(
+            "error" => true,
+            "error_messages" => $error_messages,
+        );
+        wp_send_json($sending_errors);
+
+    } else {
+        wp_send_json($api_response);
+    }
+>>>>>>> 36f7441ac0c1f73c69d7c9d24e3b12cdbe95048d
 
 }
 
@@ -84,10 +101,28 @@ function function_opt_emailpage_handler()
         'headers' => array('Content-Type' => 'application/json',
             'Wlid' => '94DE1528-DE42-498A-A07E-4A458E97240E',
         ),
+<<<<<<< HEAD
 		 'timeout' => 30,
 
     ));
     wp_send_json_success($api_response);
+=======
+        'timeout' => 30,
+    ));
+
+    if (is_wp_error($api_response)) {
+
+        $error_messages[] = 'API Request Failed: ' . $api_response->get_error_message();
+        $sending_errors = array(
+            "error" => true,
+            "error_messages" => $error_messages,
+        );
+        wp_send_json($sending_errors);
+
+    } else {
+        wp_send_json($api_response);
+    }
+>>>>>>> 36f7441ac0c1f73c69d7c9d24e3b12cdbe95048d
 
 }
 
@@ -97,9 +132,15 @@ add_action('wp_ajax_nopriv_function_opt_emailpage', 'function_opt_emailpage_hand
 
 function custom_form_ajax_email_otp_page()
 {
+<<<<<<< HEAD
 
 // Enqueue the script
     wp_enqueue_script('ResendEmailOtp', plugin_dir_url(__FILE__) . '../js/AjaxHandeling/ResendEmailOtp.js', array('jquery'), '1.0', true);
+=======
+    $version = time();
+// Enqueue the script
+    wp_enqueue_script('ResendEmailOtp', plugin_dir_url(__FILE__) . '../js/AjaxHandeling/ResendEmailOtp.js', array('jquery'), $version, true);
+>>>>>>> 36f7441ac0c1f73c69d7c9d24e3b12cdbe95048d
 
 // Localize the script
     wp_localize_script('ResendEmailOtp', 'ResendEmailOtp', array('ajaxurl' => admin_url('admin-ajax.php')));
@@ -142,17 +183,41 @@ function verify_otp_callback()
         'headers' => array('Content-Type' => 'application/json',
             'Wlid' => '94DE1528-DE42-498A-A07E-4A458E97240E',
         ),
+<<<<<<< HEAD
 		 'timeout' => 30,
 
     ));
     wp_send_json_success($api_response);
+=======
+        'timeout' => 30,
+    ));
+    if (is_wp_error($api_response)) {
+
+        $error_messages[] = 'API Request Failed: ' . $api_response->get_error_message();
+        $sending_errors = array(
+            "error" => true,
+            "error_messages" => $error_messages,
+        );
+        wp_send_json($sending_errors);
+
+    } else {
+        wp_send_json($api_response);
+    }
+>>>>>>> 36f7441ac0c1f73c69d7c9d24e3b12cdbe95048d
 }
 
 function custom_form_ajax_email_otp_page_verify()
 {
+<<<<<<< HEAD
 
 // Enqueue the script
     wp_enqueue_script('VerifyEmailOtp', plugin_dir_url(__FILE__) . '../js/AjaxHandeling/AjaxVerifyingOtp.js', array('jquery'), '1.0', true);
+=======
+    $version = time();
+
+// Enqueue the script
+    wp_enqueue_script('VerifyEmailOtp', plugin_dir_url(__FILE__) . '../js/AjaxHandeling/AjaxVerifyingOtp.js', array('jquery'), $version, true);
+>>>>>>> 36f7441ac0c1f73c69d7c9d24e3b12cdbe95048d
 
 // Localize the script
     wp_localize_script('VerifyEmailOtp', 'VerifyEmailOtp', array('ajaxurl' => admin_url('admin-ajax.php')));

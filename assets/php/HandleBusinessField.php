@@ -18,6 +18,7 @@ function custom_business_name_validation_ajax_handler()
             'body' => json_encode(array('CompanyName' => $businessName)),
             'headers' => array('Content-Type' => 'application/json',
                 'Wlid' => '94DE1528-DE42-498A-A07E-4A458E97240E'),
+<<<<<<< HEAD
 			 'timeout' => 30,
         ));
 
@@ -35,6 +36,23 @@ function custom_business_name_validation_ajax_handler()
 // echo 'unique';
             }
         }
+=======
+			'timeout' => 30,
+        ));
+
+       if (is_wp_error($api_response)) {
+
+            $error_messages[] = 'API Request Failed: ' . $api_response->get_error_message();
+            $sending_errors = array(
+                "error" => true,
+                "error_messages" => $error_messages,
+            );
+            wp_send_json($sending_errors);
+
+        } else {
+            wp_send_json($api_response);
+        } 
+>>>>>>> 36f7441ac0c1f73c69d7c9d24e3b12cdbe95048d
     }
 
     wp_die();
@@ -46,8 +64,14 @@ add_action('wp_ajax_nopriv_custom_business_name_validation_ajax', 'custom_busine
 
 function custom_business_form_ajax()
 {
+<<<<<<< HEAD
 // Enqueue the script
     wp_enqueue_script('custom-business-form-ajax', plugin_dir_url(__FILE__) . '../js/AjaxHandeling/AjaxBusinessApi.js', array('jquery'), '1.0', true);
+=======
+	$version = time();
+// Enqueue the script
+    wp_enqueue_script('custom-business-form-ajax', plugin_dir_url(__FILE__) . '../js/AjaxHandeling/AjaxBusinessApi.js', array('jquery'), $version, true);
+>>>>>>> 36f7441ac0c1f73c69d7c9d24e3b12cdbe95048d
 
 // Localize the script
     wp_localize_script('custom-business-form-ajax', 'customBusinessForm', array('ajaxurl' => admin_url('admin-ajax.php')));

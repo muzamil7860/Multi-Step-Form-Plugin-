@@ -101,7 +101,11 @@ jQuery(document).ready(function ($) {
             email: email,
           },
           success: function (storeResponse) {
+<<<<<<< HEAD
            // alert(storeResponse);
+=======
+            // alert(storeResponse);
+>>>>>>> 36f7441ac0c1f73c69d7c9d24e3b12cdbe95048d
             console.log(
               "Data stored in options table (UserID):",
               storeResponse
@@ -127,7 +131,11 @@ jQuery(document).ready(function ($) {
                 // Access the 'data' property inside the parsed response
                 var dataInsideData = responseData.data;
                 businessIdGlobal = responseData.data;
+<<<<<<< HEAD
               //  alert(businessIdGlobal);
+=======
+                //  alert(businessIdGlobal);
+>>>>>>> 36f7441ac0c1f73c69d7c9d24e3b12cdbe95048d
                 console.log(dataInsideData);
 
                 // Fifth Ajax Call Storing user bussinessid (data) to Sesssions
@@ -140,7 +148,11 @@ jQuery(document).ready(function ($) {
                     email: email,
                   },
                   success: function (storeResponse) {
+<<<<<<< HEAD
                   //  alert(storeResponse);
+=======
+                    //  alert(storeResponse);
+>>>>>>> 36f7441ac0c1f73c69d7c9d24e3b12cdbe95048d
                     console.log(
                       "Data stored in session bussiness",
                       storeResponse
