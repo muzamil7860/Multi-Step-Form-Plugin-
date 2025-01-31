@@ -3,23 +3,16 @@ jQuery(document).ready(function ($) {
   var ApiEmailSuccess = false;
   var verification_Status = false;
   $("#email").on("change", function () {
-<<<<<<< HEAD
-    var errorContainer = $("#email-error-message");
-    var email = $(this).val();
-=======
     var malFunctionCase = false;
     var mf1 = false;
     var mf2 = false;
     var errorContainer = jQuery("#email-error-message");
     var email = $("#email").val();
->>>>>>> 36f7441ac0c1f73c69d7c9d24e3b12cdbe95048d
-    var loader = $(".loader");
+    var email_loader = $(".email-loader");
+    var impBtn = $(".impBtn");
     // Validate the email using regex
     var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {
-<<<<<<< HEAD
-      toastr.error("Please enter a valid email address.", "Action Needed!");
-=======
       errorContainer.text("Please enter a valid email address.");
       jQuery("#continueProcessButtonClose").hide();
       jQuery("#continueProcessButton").hide();
@@ -28,12 +21,11 @@ jQuery(document).ready(function ($) {
       // toastr.error("Please enter a valid email address.", "Action Needed!");
 
       errorContainer.text("Please enter a valid email address.");
->>>>>>> 36f7441ac0c1f73c69d7c9d24e3b12cdbe95048d
       return false;
     }
     // Show loader before making the AJAX request
-    loader.css("display", "block");
-
+    email_loader.css("visibility", "visible");
+    impBtn.prop("disabled", true);
     // Make AJAX request to local wp table
     $.ajax({
       url: customFormFullApi.ajaxurl,
@@ -51,10 +43,6 @@ jQuery(document).ready(function ($) {
           } else {
             verification_Status = false;
           }
-<<<<<<< HEAD
-          console.log(
-            "Verfication status O true 1 false : ",
-=======
           if (
             (response.saasy_user_id == "" || response.business_id == "") &&
             response.verification_status == 0
@@ -66,7 +54,6 @@ jQuery(document).ready(function ($) {
           }
           console.log(
             "Verification Status ([true Means => Not verified , false means: verified]) : ",
->>>>>>> 36f7441ac0c1f73c69d7c9d24e3b12cdbe95048d
             verification_Status
           );
           console.log("LocalWpemail Status :", localWpEmailSuccess);
@@ -86,16 +73,7 @@ jQuery(document).ready(function ($) {
             email: email,
           },
           success: function (response) {
-<<<<<<< HEAD
-            if (response == "true") {
-              ApiEmailSuccess = false;
-            } else {
-              // Email is unique, clear error message
-              ApiEmailSuccess = true;
-            }
-
-=======
-             console.log(response);
+            console.log(response);
             if (response.error) {
               console.error(response);
               jQuery("#email").trigger("change");
@@ -113,42 +91,32 @@ jQuery(document).ready(function ($) {
               ApiEmailSuccess = true;
             }
 
-
->>>>>>> 36f7441ac0c1f73c69d7c9d24e3b12cdbe95048d
             //Person who is a new user and never filled any form(" ")
             if (localWpEmailSuccess && ApiEmailSuccess) {
               errorContainer.text("");
               $("#continueProcessButtonClose").hide();
               $("#continueProcessButton").hide();
               $("#tempClass").show();
-<<<<<<< HEAD
-=======
               console.log("In Local Wp Table :", localWpEmailSuccess);
               console.log("In Api  :", ApiEmailSuccess);
               console.log("Malfunction Status :", malFunctionCase);
               console.log("Verification Status  :", verification_Status);
               console.log("---------------------------------------------");
->>>>>>> 36f7441ac0c1f73c69d7c9d24e3b12cdbe95048d
             }
 
             //Person who filled the two forms but not verified (In both api and local but not verified)
             else if (
               !localWpEmailSuccess &&
               !ApiEmailSuccess &&
-<<<<<<< HEAD
-              verification_Status
-=======
               verification_Status &&
               !malFunctionCase
->>>>>>> 36f7441ac0c1f73c69d7c9d24e3b12cdbe95048d
             ) {
               // errorContainer.text("In both api and local but not verified");
               errorContainer.text("Do you want to continue previous ?");
+			  $(".loaderContinue").show();
               $("#continueProcessButtonClose").show();
               $("#continueProcessButton").show();
               $("#tempClass").show();
-<<<<<<< HEAD
-=======
               console.log("In Local Wp Table :", localWpEmailSuccess);
               console.log("In Api  :", ApiEmailSuccess);
               console.log("Malfunction Status :", malFunctionCase);
@@ -164,6 +132,7 @@ jQuery(document).ready(function ($) {
               !malFunctionCase
             ) {
               errorContainer.text("Do you want to continue previous ?");
+			  $(".loaderContinue").show();
               $("#continueProcessButtonClose").show();
               $("#continueProcessButton").show();
               $("#tempClass").show();
@@ -173,19 +142,14 @@ jQuery(document).ready(function ($) {
               console.log("Verification Status  :", verification_Status);
               console.log("new case added");
               console.log("---------------------------------------------");
->>>>>>> 36f7441ac0c1f73c69d7c9d24e3b12cdbe95048d
             }
 
             //Person who filled the two forms and verified (In both api and local and  Verified)
             else if (
               !localWpEmailSuccess &&
               !ApiEmailSuccess &&
-<<<<<<< HEAD
-              !verification_Status
-=======
               !verification_Status &&
               !malFunctionCase
->>>>>>> 36f7441ac0c1f73c69d7c9d24e3b12cdbe95048d
             ) {
               errorContainer.text(
                 "Email already exists. Please choose a different one."
@@ -193,21 +157,6 @@ jQuery(document).ready(function ($) {
               $("#continueProcessButtonClose").hide();
               $("#continueProcessButton").hide();
               $("#tempClass").show();
-<<<<<<< HEAD
-            }
-
-            //Person who filled the first form and left(Sirf Local ma ha)
-            else if (!localWpEmailSuccess) {
-              // errorContainer.text("Sirf Local ma ha");
-              errorContainer.text("Do you want to continue previous ?");
-              $("#continueProcessButtonClose").show();
-              $("#continueProcessButton").show();
-              $("#tempClass").show();
-            }
-
-            //Person whoES EMAIL IS ONLY IN API MEANS BEFORE MAINTING LOCAL IT WAS THERE
-            else if (!ApiEmailSuccess) {
-=======
               console.log("In Local Wp Table :", localWpEmailSuccess);
               console.log("In Api  :", ApiEmailSuccess);
               console.log("Malfunction Status :", malFunctionCase);
@@ -228,7 +177,7 @@ jQuery(document).ready(function ($) {
               console.log("Malfunction Status :", malFunctionCase);
               console.log("Verification Status  :", verification_Status);
               console.log("---------------------------------------------");
-              loader.css("display", "none");
+              email_loader.css("visibility", "hidden");
               return;
             }
             //Person whoES EMAIL IS ONLY IN API MEANS BEFORE MAINTING LOCAL IT WAS THERE
@@ -237,102 +186,49 @@ jQuery(document).ready(function ($) {
               localWpEmailSuccess &&
               !malFunctionCase
             ) {
->>>>>>> 36f7441ac0c1f73c69d7c9d24e3b12cdbe95048d
               errorContainer.text(
                 "Email already exists. Please choose a different one."
               );
               $("#continueProcessButtonClose").hide();
               $("#continueProcessButton").hide();
               $("#tempClass").show();
-<<<<<<< HEAD
-            }
-=======
               console.log("In Local Wp Table :", localWpEmailSuccess);
               console.log("In Api  :", ApiEmailSuccess);
               console.log("Verification Status  :", verification_Status);
               console.log("Malfunction Status :", malFunctionCase);
               console.log("---------------------------------------------");
             }
-			loader.css("display", "none");
->>>>>>> 36f7441ac0c1f73c69d7c9d24e3b12cdbe95048d
+            email_loader.css("visibility", "hidden");
+            impBtn.prop("disabled", false);
           },
-          error: function (error) {
-            console.log(error);
-          },
-          complete: function () {
-            // Hide overlay and loader after the AJAX request is complete
-<<<<<<< HEAD
-            loader.css("display", "none");
-=======
-           //  loader.css("display", "none");
->>>>>>> 36f7441ac0c1f73c69d7c9d24e3b12cdbe95048d
-          },
+         error: function (xhr, status, error) {
+				console.error("AJAX request failed (1):", error);
+				setTimeout(function () {
+					jQuery("#email").trigger("change");
+					email_loader.css("visibility", "visible");
+					impBtn.prop("disabled", true);
+				}, 5000);
+			}
         });
-
-        //------------------------------------
       },
+		error: function (xhr, status, error) {
+			console.error("AJAX request failed (2):", error);
+			setTimeout(function () {
+				jQuery("#email").trigger("change");
+				email_loader.css("visibility", "visible");
+				impBtn.prop("disabled", true);
+			}, 5000);
+		}
     });
   });
 
-<<<<<<< HEAD
-=======
-  /*
->>>>>>> 36f7441ac0c1f73c69d7c9d24e3b12cdbe95048d
   //Hadeling when continue process is clicked
   $("#continueProcessButton").on("click", function () {
+	$(".loaderContinue").hide();
     // Make AJAX request
     var email = jQuery("#email").val();
-    var loader = $(".loader");
-    loader.css("display", "block");
-    $.ajax({
-      url: customFormFull2Api.ajaxurl,
-      type: "POST",
-      data: {
-        action: "continueProcessButton",
-        email: email,
-      },
-      success: function (response) {
-        console.log(response);
-
-        if (response.business_name !== null) {
-          //  window.location.href = customFormFull2Api.verification_url;
-<<<<<<< HEAD
-          jQuery(".main-container1").hide();
-=======
-          jQuery(".firstStep").hide();
->>>>>>> 36f7441ac0c1f73c69d7c9d24e3b12cdbe95048d
-          jQuery(".putEmail").text(email);
-          jQuery(".main-container-email").show();
-        }
-
-        $("#first_name").val(response.first_name);
-        $("#last_name").val(response.last_name);
-        $("#email").val(response.email);
-        // $("#password").val(response.password);
-        // $("#confirm_password").val(response.email);
-        //  $("#terms_and_conditions").val("1");
-        $("#phone_number").val(response.phone_number);
-        $("#business_name").val(response.business_name);
-        $("#business_info_choice").val(response.business_info_choice);
-        $("#email-error-message").text("");
-        $("#tempClass").hide();
-      },
-      complete: function () {
-        loader.css("display", "none");
-      },
-    });
-  });
-
-<<<<<<< HEAD
-=======
-*/
-
-  //Hadeling when continue process is clicked
-  $("#continueProcessButton").on("click", function () {
-    // Make AJAX request
-    var email = jQuery("#email").val();
-    var loader = $(".loader");
-    loader.css("display", "block");
+    var loader = $(".loaderSending");
+    loader.css("display", "flex");
     console.log("1", localWpEmailSuccess);
     console.log("2", ApiEmailSuccess);
     $.ajax({
@@ -365,7 +261,7 @@ jQuery(document).ready(function ($) {
           jQuery(".firstStep").hide();
           jQuery(".putEmail").text(email);
           jQuery(".main-container-email").show();
-		  jQuery(".otpBox:first").focus();
+          jQuery(".otpBox:first").focus();
         } else {
           console.log("OTP Didnot sent to Email");
           console.log(alpha.message);
@@ -380,10 +276,10 @@ jQuery(document).ready(function ($) {
     });
   });
 
->>>>>>> 36f7441ac0c1f73c69d7c9d24e3b12cdbe95048d
   //Handeling close button
   $("#continueProcessButtonClose").on("click", function () {
     if (!localWpEmailSuccess && !ApiEmailSuccess) {
+		$(".loaderContinue").hide();
       $("#email-error-message").text(
         "Email already exists. Please choose a different one."
       );

@@ -22,14 +22,14 @@ function custom_registration_form_shortcode_after_success()
 
 <div class="monster" id="monsterDiv" style="display:none">
     <button class="close-button" style="display:none;">
-        <img src="http://lincsell.com/wp-content/uploads/2024/01/crooos-sign.svg" alt="Close" />
+        <img src="http://stg.stg.lincsell.com/wp-content/uploads/2024/01/crooos-sign.svg" alt="Close" />
     </button>
 
     <div class="loader" style="display:none">
         <div class="ngx-spinner-overlay">
             <div class="col-12 d-flex align-items-center justify-content-center flex-column">
                 <img style="width:150px !important;" decoding="async"
-                    src="https://lincsell.com/wp-content/uploads/2024/01/LincSell-Icon-2-2.gif" data-no-lazy="1"
+                    src="https://stg.stg.lincsell.com/wp-content/uploads/2024/01/LincSell-Icon-2-2.gif" data-no-lazy="1"
                     alt="logo">
                 <p class="plugin_para_load" style="color:white">Please wait ...</p>
             </div>
@@ -43,7 +43,7 @@ function custom_registration_form_shortcode_after_success()
         <div class="ngx-spinner-overlay">
             <div class="col-12 d-flex align-items-center justify-content-center flex-column">
                 <img style="width:150px !important;" decoding="async"
-                    src="https://lincsell.com/wp-content/uploads/2024/01/LincSell-Icon-2-2.gif" data-no-lazy="1"
+                    src="https://stg.stg.lincsell.com/wp-content/uploads/2024/01/LincSell-Icon-2-2.gif" data-no-lazy="1"
                     alt="logo">
                 <p class="plugin_para_load" style="color:white">Try Again By Refreshing The Page ...</p>
             </div>
@@ -78,11 +78,11 @@ function custom_registration_form_shortcode_after_success()
 
             <div class="col-11 col-md-11  columns-class-email pb-3 pt-3 px-0 px-md-3">
                 <div class="d-flex flex-column align-items-center">
-                    <a href="https://lincsell.com/"> <img
+                    <a href="https://stg.stg.lincsell.com/"> <img
                             src="<?php echo plugins_url('../images/logo.svg', __FILE__); ?>" alt="Phone Icon"
                             style="width: 180px; "></a>
 
-                    <div class="mt-3 mb-3"><img src="http://lincsell.com/wp-content/uploads/2024/01/Check-mark.gif"
+                    <div class="mt-3 mb-3"><img src="http://stg.stg.lincsell.com/wp-content/uploads/2024/01/Check-mark.gif"
                             style="width:80px;" alt="Phone Icon">
                     </div>
                 </div>

@@ -16,15 +16,6 @@ function enqueue_saasy_scripts()
     wp_enqueue_style('bootstrap', plugins_url('../bootstrap/css/bootstrap.min.css', __FILE__));
     wp_enqueue_script('bootstrap-js', plugins_url('../bootstrap/js/bootstrap.min.js', __FILE__));
     //Custom Javascript
-<<<<<<< HEAD
-    wp_enqueue_script('custom-registration-scripts', plugins_url('../js/script.js', __FILE__), array('jquery'), '1.00.2', true);
-    wp_enqueue_script('custom-password-scripts', plugins_url('../js/PasswordConfirmation.js', __FILE__), array('jquery'), null, true);
-    wp_enqueue_script('personal-form-scripts', plugins_url('../js/PersonalForm.js', __FILE__), array('jquery'), null, true);
-    //Custom Css
-    wp_enqueue_style('custom-styles', plugin_dir_url(__FILE__) . '../css/style.css');
-    wp_enqueue_style('custom-jelly-styles', plugin_dir_url(__FILE__) . '../css/loaderStyle.css');
-    wp_enqueue_style('theme-css', plugin_dir_url(__FILE__) . '../css/theme.css');
-=======
     wp_enqueue_script('custom-registration-scripts', plugins_url('../js/script.js', __FILE__), array('jquery'), $version, true);
     wp_enqueue_script('custom-password-scripts', plugins_url('../js/PasswordConfirmation.js', __FILE__), array('jquery'), $version, true);
     wp_enqueue_script('personal-form-scripts', plugins_url('../js/PersonalForm.js', __FILE__), array('jquery'), $version, true);
@@ -32,7 +23,6 @@ function enqueue_saasy_scripts()
     wp_enqueue_style('custom-styles', plugin_dir_url(__FILE__) . '../css/style.css', array(), $version);
     wp_enqueue_style('theme-css', plugin_dir_url(__FILE__) . '../css/theme.css');
     wp_enqueue_style('otp-css', plugin_dir_url(__FILE__) . '../css/otp.css', array(), $version);
->>>>>>> 36f7441ac0c1f73c69d7c9d24e3b12cdbe95048d
 
     //Enuqueue Toaster library Js
     wp_enqueue_script('toastrJs', 'https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js', array('jquery'));

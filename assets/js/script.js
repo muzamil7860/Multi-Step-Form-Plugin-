@@ -1,44 +1,78 @@
-<<<<<<< HEAD
-jQuery(window).on('load', function() {
+//comment added
+console.log("Script Working Successfully version time22");
 
-		jQuery('.loader').css('display','none');
+
+jQuery('#refreshButton').on('click', function() {
+    location.reload();
+});
+
+
+jQuery("#industry").on("change", function () {
+  var errorContainerIndustry_vad = jQuery("#industry-error-message");
+  errorContainerIndustry_vad.text("");
+});
+
+jQuery("#has_website").on("change", function () {
+  var has_website_error_container = jQuery("#has_website-error-message");
+  has_website_error_container.text("");
+});
+
+jQuery("#platform").on("change", function () {
+  var has_platform_error_container = jQuery("#has_platform-error-message");
+  has_platform_error_container.text("");
+});
+
+jQuery("#has_domain").on("change", function () {
+  var has_domain_error_message = jQuery("#has_domain-error-message");
+  has_domain_error_message.text("");
+});
+
+jQuery("#domain").on("change", function () {
+  var has_registered_error_message = jQuery("#has_registered-error-message");
+  has_registered_error_message.text("");
+});
+
+jQuery(document).ready(function ($) {
+  $("#has_website").change(function () {
+    if ($(this).val() === "yes") {
+      $("#twoColAlphaId").removeClass("twoColAlpha");
+      $("#twoColAlphaId").addClass("twoCol");
+      $("#website_platform").show();
+    } else {
+      $("#twoColAlphaId").removeClass("twoCol");
+      $("#twoColAlphaId").addClass("twoColAlpha");
+      $("#has_platform-error-message").text("");
+      $("#website_platform").hide();
+      $("#platform").val("");
+    }
   });
-=======
-//comment added   
-console.log("Script Working Successfully version time22");         
 
-
+  $("#has_domain").change(function () {
+    if ($(this).val() === "yes") {
+      $("#registerDomain-feedback").css("display", "none");
+      $("#website_domain").show();
+    } else {
+      $("#has_registered-error-message").text("");
+      $("#registerDomain-feedback").css("display", "block");
+      $("#website_domain").hide();
+      $("#domain").val("");
+    }
+  });
+});
 
 jQuery("#business_name").on("change", function () {
-	var errorContainer = jQuery("#business-name-error-message");
-	errorContainer.text("");
+  var errorContainer = jQuery("#business-name-error-message");
+  errorContainer.text("");
 });
 
 jQuery(".close-button").on("click", function () {
-	jQuery(".loader").css('display','block');
-  //   jQuery(".monster").delay(500).hide(0);
-  //   jQuery(".page-template").css("overflow", "auto");
-  location.reload(true); // true parameter forces a reload from the server and not from the cache
+  jQuery(".loader").css("display", "block");
+  location.reload(true);
 });
 
-// Show the .monster element with a delay
-//
-/*
 jQuery("#submit-button-trial").on("click", function () {
-jQuery(".loader").show();
-  jQuery(".monster").show();
-	jQuery(".firstStep").show();
-  jQuery(".page-template").css("overflow", "hidden");
-	jQuery(".loader").hide();
-});
-*/
-
-jQuery("#submit-button-trial").on("click", function () {
-  jQuery('#header_custom').css('z-index', '0');
+  jQuery("#header_custom").css("z-index", "0");
   jQuery("#monsterDiv").show();
-// 	 if (jQuery('#monsterDiv').css('display') !== 'none') {
-//         $('#back-to-top').css('display', 'none');
-//       }
   var div = document.getElementById("monsterDiv");
   var backgroundImage = new Image();
   backgroundImage.src = getComputedStyle(div)
@@ -47,21 +81,21 @@ jQuery("#submit-button-trial").on("click", function () {
 
   backgroundImage.onload = function () {
     jQuery(".firstStep").show();
-	jQuery(".close-button").show();
-	jQuery("#first_name").focus();
-
+    jQuery(".close-button").show();
+    jQuery("#first_name").focus();
+//     jQuery("#email").val("");
+    jQuery("#business_name").val("");
+//     jQuery("#email-error-message").text("");
+    jQuery("#business-name-error-message").text("");
   };
 
   jQuery(".page-template").css("overflow", "hidden");
 });
-
 
 jQuery("#button_header_cus_2").on("click", function () {
-  jQuery('#header_custom').css('z-index', '0');
+  jQuery("#header_custom").css("z-index", "0");
   jQuery("#monsterDiv").show();
-// 	 if (jQuery('#monsterDiv').css('display') !== 'none') {
-//         $('#back-to-top').css('display', 'none');
-//       }
+
   var div = document.getElementById("monsterDiv");
   var backgroundImage = new Image();
   backgroundImage.src = getComputedStyle(div)
@@ -70,24 +104,48 @@ jQuery("#button_header_cus_2").on("click", function () {
 
   backgroundImage.onload = function () {
     jQuery(".firstStep").show();
-	jQuery(".close-button").show();
-	jQuery("#first_name").focus();
+    jQuery(".close-button").show();
+    jQuery("#first_name").focus();
+//     jQuery("#email").val("");
+    jQuery("#business_name").val("");
+//     jQuery("#email-error-message").text("");
+    jQuery("#business-name-error-message").text("");
   };
 
   jQuery(".page-template").css("overflow", "hidden");
 });
 
+jQuery("#button_header_cus_5").on("click", function () {
+  jQuery("#header_custom").css("z-index", "0");
+  jQuery("#monsterDiv").show();
+
+  var div = document.getElementById("monsterDiv");
+  var backgroundImage = new Image();
+  backgroundImage.src = getComputedStyle(div)
+    .backgroundImage.replace('url("', "")
+    .replace('")', "");
+
+  backgroundImage.onload = function () {
+    jQuery(".firstStep").show();
+    jQuery(".close-button").show();
+    jQuery("#first_name").focus();
+//     jQuery("#email").val("");
+    jQuery("#business_name").val("");
+//     jQuery("#email-error-message").text("");
+    jQuery("#business-name-error-message").text("");
+  };
+
+  jQuery(".page-template").css("overflow", "hidden");
+});
 
 jQuery("#button_header_cus_3").on("click", function () {
   jQuery("#stickey_sec").css("display", "none");
   jQuery(".eael-tabs-nav").css("display", "none");
-  jQuery('#header_custom_pd').css('z-index', '0');
-  jQuery('#header_custom_pm').css('z-index', '0');
+  jQuery("#header_custom_pd").css("z-index", "0");
+  jQuery("#header_custom_pm").css("z-index", "0");
   jQuery(".eael-tabs-nav").css("z-index", "1");
   jQuery("#monsterDiv").show();
-// 	 if (jQuery('#monsterDiv').css('display') !== 'none') {
-//         $('#back-to-top').css('display', 'none');
-//       }
+
   var div = document.getElementById("monsterDiv");
   var backgroundImage = new Image();
   backgroundImage.src = getComputedStyle(div)
@@ -96,8 +154,12 @@ jQuery("#button_header_cus_3").on("click", function () {
 
   backgroundImage.onload = function () {
     jQuery(".firstStep").show();
-	jQuery(".close-button").show();
-	jQuery("#first_name").focus();
+    jQuery(".close-button").show();
+    jQuery("#first_name").focus();
+//     jQuery("#email").val("");
+    jQuery("#business_name").val("");
+//     jQuery("#email-error-message").text("");
+    jQuery("#business-name-error-message").text("");
   };
 
   jQuery(".page-template").css("overflow", "hidden");
@@ -106,12 +168,9 @@ jQuery("#button_header_cus_3").on("click", function () {
 jQuery("#button_header_cus_4").on("click", function () {
   jQuery("#stickey_sec").css("display", "none");
   jQuery(".eael-tabs-nav").css("display", "none");
-  jQuery('#header_custom_pd').css('z-index', '0');
-  jQuery('#header_custom_pm').css('z-index', '0');
+  jQuery("#header_custom_pd").css("z-index", "0");
+  jQuery("#header_custom_pm").css("z-index", "0");
   jQuery("#monsterDiv").show();
-// 	 if (jQuery('#monsterDiv').css('display') !== 'none') {
-//         $('#back-to-top').css('display', 'none');
-//       }
   var div = document.getElementById("monsterDiv");
   var backgroundImage = new Image();
   backgroundImage.src = getComputedStyle(div)
@@ -120,16 +179,16 @@ jQuery("#button_header_cus_4").on("click", function () {
 
   backgroundImage.onload = function () {
     jQuery(".firstStep").show();
-	jQuery(".close-button").show();
-	jQuery("#first_name").focus();
+    jQuery(".close-button").show();
+    jQuery("#first_name").focus();
+//     jQuery("#email").val("");
+    jQuery("#business_name").val("");
+//     jQuery("#email-error-message").text("");
+    jQuery("#business-name-error-message").text("");
   };
 
   jQuery(".page-template").css("overflow", "hidden");
 });
-
-
->>>>>>> 36f7441ac0c1f73c69d7c9d24e3b12cdbe95048d
-
 
 document
   .getElementById("custom-registration-form")
@@ -139,17 +198,6 @@ document
       return false;
     }
   });
-
-// var registrationForm = document.getElementById("custom-registration-form");
-
-// if (registrationForm) {
-//   registrationForm.addEventListener("keydown", function (e) {
-//     if (e.key === "Enter") {
-//       e.preventDefault();
-//       return false;
-//     }
-//   });
-// }
 
 function showPasswordStrengthMeter() {
   var passwordStrength = document.querySelector(".password-strength");
@@ -228,11 +276,10 @@ function checkPasswordStrength() {
     feedbackDiv.innerHTML =
       "Password should contain " + missingCriteria.join(", ");
   } else {
-    feedbackDiv.innerHTML = ""; // Clear feedback if all criteria are met
+    feedbackDiv.innerHTML = "";
   }
 }
 
-//Attach the checkPasswordStrength function to the input event of the password field
 var passwordVar = document.getElementById("password");
 if (passwordVar) {
   document
@@ -289,12 +336,6 @@ function selectBusinessInfoTest(choice) {
   }
 }
 
-// jQuery(document).ready(function ($) {
-//   Inputmask({
-//     mask: "(999) 999-9999",
-//   }).mask("#phone_number");
-// });
-
 jQuery("#phone_number").on("input", function () {
   let value = jQuery(this).val().replace(/\D/g, "").substring(0, 10);
   let formattedValue = "";
@@ -306,7 +347,6 @@ jQuery("#phone_number").on("input", function () {
   }
   jQuery(this).val(formattedValue);
 });
-
 
 function togglePasswordVisibility(fieldId) {
   var passwordField = document.getElementById(fieldId);
@@ -342,6 +382,12 @@ function validateStep1() {
   var businessName = document.getElementById("business_name").value;
   var businessError = jQuery("#business-name-error-message");
 
+  var industry = jQuery("#industry").val();
+  var has_website = jQuery("#has_website").val();
+  var has_platform = jQuery("#platform").val();
+  var has_domain = jQuery("#has_domain").val();
+  var has_registered = jQuery("#domain").val();
+
   var alpha = jQuery("#lastNameError");
   var beta = jQuery("#name-error-message");
   var ceta = jQuery("#phone-error-message");
@@ -349,17 +395,20 @@ function validateStep1() {
   var eeta = jQuery("#password-error-message");
   var feta = jQuery("#password-feedback");
 
-  // alert(email);
+  var errorContainerIndustry_vad = jQuery("#industry-error-message");
+  var has_website_error_container = jQuery("#has_website-error-message");
+  var has_platform_error_container = jQuery("#has_platform-error-message");
+  var has_domain_error_message = jQuery("#has_domain-error-message");
+  var has_registered_error_message = jQuery("#has_registered-error-message");
+
   if (errorContainerEmail.html().trim() == "") {
     if (
       firstName === "" ||
       lastName === "" ||
       email == "" ||
       phoneNumber === "" ||
-      password === ""
-      // ||
-      // confirmPassword === "" ||
-      // password !== confirmPassword
+      password === "" ||
+      industry === ""
     ) {
       if (lastName === "") {
         alpha.text("Please Fill The Last Name!");
@@ -371,15 +420,31 @@ function validateStep1() {
 
       if (phoneNumber === "") {
         ceta.text("Please Fill The Phone Number!");
-<<<<<<< HEAD
-        //    console.log(phoneNumber.length);
+      }
+      if (industry === "") {
+        errorContainerIndustry_vad.text("Please Fill The Industry!");
       }
 
-      if (email === "") {
-        deta.text("Please Fill The Email!");
+      if (has_website === "") {
+        has_website_error_container.text("Please Fill The Website!");
       }
-      if (password === "") {
-=======
+
+      if (has_domain === "") {
+        has_domain_error_message.text("Please Fill The Domain!");
+      }
+
+      if (has_website != "" && has_website != "no") {
+        if (has_platform === "") {
+          has_platform_error_container.text("Please Fill The Platform!");
+        }
+      }
+
+      if (has_domain != "" && has_domain != "no") {
+        if (has_registered === "") {
+          has_registered_error_message.text(
+            "Please Fill The Registered Domain!"
+          );
+        }
       }
 
       if (email == "") {
@@ -392,7 +457,6 @@ function validateStep1() {
       }
       if (password === "") {
         feta.css("color", "red");
->>>>>>> 36f7441ac0c1f73c69d7c9d24e3b12cdbe95048d
         feta.text("Please Fill The Password!");
       }
       if (confirmPassword === "") {
@@ -408,26 +472,10 @@ function validateStep1() {
     }
 
     if (!emailRegex.test(email)) {
-<<<<<<< HEAD
-      // alert("Please enter a valid email address.");
-      toastr.error(
-        "Please enter a valid email address.",
-        "Action Needed!"
-        //
-      );
-=======
-      //       toastr.error(
-      //         "Please enter a valid email address.",
-      //         "Action Needed!"
-      //       );
       deta.text("Please enter a valid email address.");
-      //       jQuery("#continueProcessButtonClose").hide();
-      //       jQuery("#continueProcessButton").hide();
-      //       jQuery("#tempClass").show();
->>>>>>> 36f7441ac0c1f73c69d7c9d24e3b12cdbe95048d
       return false;
     }
-    //-----------------------------------------------------------------------------
+
     //handeling password
     // Regular expressions for validation
     var uppercaseRegex = /[A-Z]/;
@@ -435,15 +483,6 @@ function validateStep1() {
     var digitRegex = /\d/;
     var specialCharRegex = /[!@#$%^&*()_+{}\[\]:;<>,.?~\\/-]/;
 
-<<<<<<< HEAD
-    // Check if the terms and conditions checkbox is checked
-    if (!termsCheckbox.checked) {
-      toastr.error(
-        "To continue, please check the box to agree to our Terms of Service & Privacy Policy.",
-        "Action Needed!"
-        //
-      );
-=======
     // Check if all criteria are met
     if (
       password.length >= 8 &&
@@ -461,35 +500,11 @@ function validateStep1() {
       businessError.text("Please Fill The Business Name!");
       return false;
     }
-//     if (businessError.html().trim() == "Company Name already exists.") {
-//       return false;
-//     }
 
     if (businessError.html().trim() == "Please Fill The Business Name!") {
->>>>>>> 36f7441ac0c1f73c69d7c9d24e3b12cdbe95048d
       return false;
     }
-	//-----------------------------------------------------------------------------
-  //handeling password
-  // Regular expressions for validation
-  var uppercaseRegex = /[A-Z]/;
-  var lowercaseRegex = /[a-z]/;
-  var digitRegex = /\d/;
-  var specialCharRegex = /[!@#$%^&*()_+{}\[\]:;<>,.?~\\/-]/;
-  
 
-  // Check if all criteria are met
-  if (
-    password.length >= 8 &&
-    uppercaseRegex.test(password) &&
-    lowercaseRegex.test(password) &&
-    digitRegex.test(password) &&
-    specialCharRegex.test(password)
-  ) {
-  } else {
-    return false;
-  }
-  //-----------------------------------------------------------------------------
     return true;
   }
 
@@ -499,7 +514,6 @@ function validateStep1() {
   ) {
     return false;
   }
-
 }
 
 // ---------------------------------------------------------------------------------------------------
@@ -515,15 +529,9 @@ function validateStep2() {
     businessError.text("Please Fill The Business Name!");
     return false;
   }
-<<<<<<< HEAD
-  if (businessError.html().trim() == "Company Name already exists.") {
-    return false;
-  }
-=======
-//   if (businessError.html().trim() == "Company Name already exists.") {
-//     return false;
-//   }
->>>>>>> 36f7441ac0c1f73c69d7c9d24e3b12cdbe95048d
+  //   if (businessError.html().trim() == "Company Name already exists.") {
+  //     return false;
+  //   }
 
   if (businessError.html().trim() == "Please Fill The Business Name!") {
     return false;
@@ -532,33 +540,21 @@ function validateStep2() {
   return true;
 }
 
-// function nextStep() {
-//   // Validate Step 1 before moving to Step 2
-//   if (validateStep1()) {
-//     jQuery("#step-1").hide();
-//     jQuery("#step-2").show();
-//     jQuery(".secondClass").css("background-color", "#1429ef");
-//     jQuery(".secondClass").css("color", "white");
-//     jQuery("#firstClass").removeClass("fa-1").addClass("fa-check");
-//     jQuery("#secondClass").css("color", "white");
-//   }
-// }
-
 function nextStep() {
   // Validate Step 1 before moving to Step 2
   if (validateStep1()) {
     // Hide Step 1 with transition
-   // jQuery("#step-1").fadeOut(500, function () {
-      // Callback function after fadeOut is complete
-      // Show Step 2 with transition
-      //jQuery("#step-2").fadeIn(500);
-      //--------------------------------------------------------
-     //  jQuery("#submit-form").show();
-     // jQuery("#custom-registration-form").hide();
-     // jQuery(".firstStep").hide();
-     // jQuery(".main-container-email").show();
-      //--------------------------------------------------------
-  //  });
+    // jQuery("#step-1").fadeOut(500, function () {
+    // Callback function after fadeOut is complete
+    // Show Step 2 with transition
+    //jQuery("#step-2").fadeIn(500);
+    //--------------------------------------------------------
+    //  jQuery("#submit-form").show();
+    // jQuery("#custom-registration-form").hide();
+    // jQuery(".firstStep").hide();
+    // jQuery(".main-container-email").show();
+    //--------------------------------------------------------
+    //  });
 
     // Additional styling changes with transitions
     jQuery(".secondClass").css({

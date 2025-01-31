@@ -28,7 +28,7 @@ jQuery(document).ready(function ($) {
         console.log(response);
         if (response.error) {
           console.error(response);
-          jQuery(".loaderError").css("display", "block");
+          jQuery(".loaderErroring").css("display", "flex");
           return;
         }
         const parsedResponse = JSON.parse(response.body);
@@ -39,11 +39,11 @@ jQuery(document).ready(function ($) {
           console.error(
             "Error Occured in the Api responsible for ReSending OTP"
           );
-          toastr.error("Unable to send Otp.");
+         toastr.error("Unable to send verification code. Please refresh your page.");
           return;
         } else {
           console.log("Resend Otp Api Called ");
-          toastr.success("Otp sent to email.");
+          toastr.success("Verification Code Resent");
         }
       },
       error: function (error) {

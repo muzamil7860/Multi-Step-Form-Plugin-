@@ -1,14 +1,53 @@
-<<<<<<< HEAD
-@font-face {
-  font-family: "Rubik";
-  src: url("../fonts/rubiq/Rubik-Regular.ttf") format("truetype");
-=======
+@media (max-width: 480px) {
+  .form-group {
+    margin-bottom: 0.5rem !important;
+  }
+  .twoMobcol {
+    width: 100%;
+  }
+
+  .email-loader-buzz {
+    visibility: hidden;
+    position: relative;
+    bottom: 39px;
+    left: 86%;
+    color: #1629ef;
+    background-color: #ffffff00;
+  }
+}
+
+@media (min-width: 481px) {
+  .twoColAlpha {
+    width: 100% !important;
+  }
+  .twoCol {
+    width: 48%;
+  }
+
+  .email-loader-buzz {
+    visibility: hidden;
+    position: relative;
+    bottom: 39px;
+    left: 92%;
+    color: #1629ef;
+    background-color: #ffffff00;
+  }
+}
+
+button:disabled {
+  background-color: #c60000;
+  color: #666;
+  cursor: not-allowed;
+  border: 1px solid #aaa;
+  opacity: 0.7;
+}
+
 /* toaaster rersend opt styling */
 .toast-success {
   background-color: #15d300a9 !important;
   opacity: 1 !important;
   box-shadow: none !important;
-  width: 250px !important;
+  width: 100% !important;
   font-size: 18px !important ;
   text-align: center !important;
 }
@@ -16,7 +55,7 @@
   background-color: rgb(255 0 0 / 76%) !important;
   opacity: 1 !important;
   box-shadow: none !important;
-  width: 250px !important;
+  width: 100% !important;
   font-size: 18px !important ;
   text-align: center !important;
 }
@@ -162,11 +201,11 @@ body::-webkit-scrollbar {
   /* 	-------------------------------------------- */
   @media (min-width: 1500px) {
     .main-container1 {
-      padding-top: 5%;
+      padding-top: 4%;
       padding-bottom: 7%;
     }
     .main-container {
-      padding-top: 5%;
+      padding-top: 4%;
       padding-bottom: 8%;
     }
   }
@@ -258,14 +297,8 @@ body {
 
 .form-group-password {
   margin-bottom: 5px !important;
->>>>>>> 36f7441ac0c1f73c69d7c9d24e3b12cdbe95048d
 }
 
-@media (max-width: 500px) {
-  .heading_06 {
-    font-size: 14px;
-  }
-}
 @media (max-width: 500px) {
   .form-group-password {
     margin-bottom: -14px !important;
@@ -280,7 +313,7 @@ body {
 }
 @media (max-width: 501px) {
   .businessDiv {
-    margin-top: 25px !important;
+    margin-top: 0px !important;
   }
 }
 
@@ -305,12 +338,12 @@ body {
   .paraClassCustom {
     font-size: 16px;
     line-height: 20px;
-    margin-top: 10px;
+    margin-top: 10px !important;
   }
 }
 @media (min-width: 471px) and (max-width: 767px) {
   .paraClassCustom {
-    margin-top: 10px;
+    margin-top: 10px !important;
     font-size: 16px;
     line-height: 25px;
   }
@@ -318,7 +351,7 @@ body {
 
 @media (max-width: 471px) {
   .paraClassCustom {
-    margin-top: 10px;
+    margin-top: 10px !important;
     font-size: 15px;
     line-height: 20px;
   }
@@ -328,14 +361,6 @@ body {
   font-family: "Rubik";
 } */
 
-.paraClassCustom {
-  font-size: 14px;
-  line-height: 20px;
-}
-
-span {
-  font-family: "Rubik";
-}
 @media (max-width: 768px) {
   .settingwidthGreen {
     width: 50px !important;
@@ -346,19 +371,6 @@ span {
   .gappingClass {
     gap: 5px;
   }
-<<<<<<< HEAD
-  .paraclass {
-    margin-top: -10px;
-    font-size: 12px;
-    margin-bottom: 15px !important;
-  }
-  /* important to notice */
-  .heading_04 {
-    font-size: 19px !important;
-  }
-  .heading_02 {
-    font-size: 19px !important;
-=======
 
   /* important to notice */
   .heading_04,
@@ -370,15 +382,9 @@ span {
 @media (max-width: 827px) {
   .heading_06 {
     line-height: 21px !important;
->>>>>>> 36f7441ac0c1f73c69d7c9d24e3b12cdbe95048d
   }
 }
 
-@media (max-width: 827px) {
-  .heading_06 {
-    line-height: 21px !important;
-  }
-}
 .error-div {
   height: 7px;
   line-height: 15px;
@@ -387,46 +393,6 @@ span {
 
 .error-div-password {
   /* height: 15px; */
-<<<<<<< HEAD
-}
-
-/* important to notice */
-span {
-  font-family: "Rubik", sans-serif;
-}
-
-/* important to notice */
-button {
-  font-family: "Rubik", sans-serif;
-}
-
-/* important to notice */
-label {
-  font-family: "Rubik", sans-serif;
-}
-
-/* important to notice */
-p {
-  font-family: "Rubik", sans-serif;
-}
-
-/* important to notice */
-p.first-col-para {
-  font-family: "Rubik", sans-serif;
-}
-
-/* important to notice */
-input[type="password"]::-ms-reveal,
-input[type="password"]::-ms-clear {
-  display: none;
-}
-
-p.first-col-para {
-  line-height: 20px;
-}
-
-/* important to notice */
-=======
   font-family: "Mona", Sans-serif !important;
 }
 
@@ -440,14 +406,13 @@ p.first-col-para {
 }
 
 /* important to notice */
-span,
+
 button,
 label,
 p,
 p.first-col-para,
 input[type="password"]::-ms-reveal,
 input[type="password"]::-ms-clear,
->>>>>>> 36f7441ac0c1f73c69d7c9d24e3b12cdbe95048d
 body {
   font-family: "Mona", Sans-serif;
 }
@@ -464,37 +429,22 @@ body {
   }
 }
 
-<<<<<<< HEAD
-.btn-customm {
-  background-color: rgba(0, 0, 0, 0);
-  border-color: rgba(0, 0, 0, 0);
-  color: #23dc32;
-=======
 .btn-customm,
 .btn-customm:hover {
   background-color: var(--main-background-color);
   border-color: var(--main-background-color);
   color: var(--btn-custom-text-color);
->>>>>>> 36f7441ac0c1f73c69d7c9d24e3b12cdbe95048d
   text-decoration: underline;
   padding: 0px;
   font-weight: 600;
   margin-top: 5px;
 }
 
-<<<<<<< HEAD
-.btn-customm:hover {
-  background-color: rgba(0, 0, 0, 0);
-  border-color: rgba(0, 0, 0, 0);
-  color: #23dc32;
-  text-decoration: underline;
-=======
 .btn-cus {
   padding-left: 30px;
   padding-right: 30px;
   padding-top: 10px;
   padding-bottom: 10px;
->>>>>>> 36f7441ac0c1f73c69d7c9d24e3b12cdbe95048d
 }
 
 /* Apply the rotation animation to the loader image */
@@ -507,11 +457,7 @@ body {
 }
 
 #secondClass {
-<<<<<<< HEAD
-  color: #23dc32;
-=======
   color: #1429ef;
->>>>>>> 36f7441ac0c1f73c69d7c9d24e3b12cdbe95048d
 }
 
 input[type="checkbox"]:checked {
@@ -535,12 +481,6 @@ input[type="checkbox"] {
   /* Adjust the spacing as needed */
 }
 
-<<<<<<< HEAD
-/* important to notice */
-label {
-  font-size: 14px;
-  color: #000000d6;
-=======
 @media (max-width: 480px) {
   .col-12-pL {
     padding: 0px !important;
@@ -551,8 +491,7 @@ label {
 .label_plug {
   font-size: 15px;
   color: #ffffffd6;
-  margin-bottom: 0px !important;
->>>>>>> 36f7441ac0c1f73c69d7c9d24e3b12cdbe95048d
+  margin-bottom: 0.2rem !important;
 }
 
 .hr-div {
@@ -656,7 +595,7 @@ hr {
 }
 @media (min-width: 365px) {
   .spacing-btn {
-    margin-top: 50px;
+    margin-top: 0px;
     margin-bottom: 10px;
     padding-left: 30px;
     padding-right: 30px;
@@ -693,13 +632,7 @@ hr {
 
 @media (max-width: 500px) {
   .spacing-btn {
-    margin-top: 30px !important;
-  }
-}
-
-@media (max-width: 500px) {
-  .spacing-btn {
-    margin-top: 10px !important;
+    margin-top: 0px !important;
   }
 }
 
@@ -791,20 +724,12 @@ hr {
 }
 
 /* important to notice */
-<<<<<<< HEAD
-
-=======
->>>>>>> 36f7441ac0c1f73c69d7c9d24e3b12cdbe95048d
 .heading_02 {
   font-weight: 500 !important;
   margin: 0px !important;
 }
 
 /* important to notice */
-<<<<<<< HEAD
-
-=======
->>>>>>> 36f7441ac0c1f73c69d7c9d24e3b12cdbe95048d
 .heading_04 {
   font-weight: 500 !important;
 }
@@ -831,7 +756,7 @@ hr {
   color: white !important;
   font-size: 14px !important;
   background-color: var(--selected-background);
-  border-radius: 30px;
+  border-radius: 10px;
 }
 
 .btn-custom:hover {
@@ -887,10 +812,7 @@ hr {
   border: none;
   color: var(--btn-custom-2-text-color);
 }
-<<<<<<< HEAD
-=======
 
->>>>>>> 36f7441ac0c1f73c69d7c9d24e3b12cdbe95048d
 .form-group-custom {
   margin-bottom: 0px !important;
 }

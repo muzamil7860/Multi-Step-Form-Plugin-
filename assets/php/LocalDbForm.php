@@ -2,8 +2,6 @@
 
 //-----------------Ajax Handling First Form-------------------------------
 
-<<<<<<< HEAD
-=======
 function saasy_json_decode_3alpha($encoded_array)
 {
     $ok = json_decode($encoded_array, true);
@@ -15,8 +13,6 @@ function saasy_json_decode_3alpha($encoded_array)
     return $ok;
 }
 
-
->>>>>>> 36f7441ac0c1f73c69d7c9d24e3b12cdbe95048d
 add_action('wp_ajax_custom_form_ajax', 'custom_form_ajax_handler');
 add_action('wp_ajax_nopriv_custom_form_ajax', 'custom_form_ajax_handler');
 
@@ -26,11 +22,6 @@ $save_data_to_db = isset($options['save_data_to_db']) ? $options['save_data_to_a
 if ($save_data_to_db == 1) {
     function custom_form_ajax()
     {
-<<<<<<< HEAD
-// Enqueue the script
-        //wp_enqueue_script('custom-form-ajax', plugin_dir_url(__FILE__) . 'AjaxScriptForm1.js', array('jquery'), '1.0', true);
-=======
->>>>>>> 36f7441ac0c1f73c69d7c9d24e3b12cdbe95048d
 
 // Localize the script
         wp_localize_script('custom-form-ajax', 'customForm', array('ajaxurl' => admin_url('admin-ajax.php')));
@@ -41,19 +32,15 @@ if ($save_data_to_db == 1) {
 
     function custom_form_ajax_handler()
     {
-<<<<<<< HEAD
-        // check_ajax_referer('custom_form_nonce', 'security');
-        //--------------------------------------------------------
-=======
-        
-		 $referer = '';
+
+        $referer = '';
         $custTrackingId = '';
         $cuId = '';
-		
-		$domain = $_SERVER['HTTP_HOST'];
-		$domain = str_replace('.', '_', $domain);
-		$cookie_name = $domain . '_session_tguid';
-		
+
+        $domain = $_SERVER['HTTP_HOST'];
+        $domain = str_replace('.', '_', $domain);
+        $cookie_name = $domain . '_session_tguid';
+
         if ($_COOKIE[$cookie_name]) {
             $existing_data = saasy_json_decode_3alpha($_COOKIE[$cookie_name]);
             if ($existing_data) {
@@ -62,7 +49,6 @@ if ($save_data_to_db == 1) {
                 $cuId = $existing_data['ftc_session_guid'];
             }
         }
->>>>>>> 36f7441ac0c1f73c69d7c9d24e3b12cdbe95048d
 
 // Check if any of the required fields are empty
         if (empty($_POST['first_name']) ||
@@ -71,8 +57,6 @@ if ($save_data_to_db == 1) {
             empty($_POST['phone_number']) ||
             empty($_POST['password']) ||
             !isset($_POST['terms_and_conditions'])) {
-
-// If any field is empty, terminate the function
             echo 'error: one or more fields are empty';
             wp_die();
             return;
@@ -90,13 +74,13 @@ if ($save_data_to_db == 1) {
             $phone_number = sanitize_text_field($_POST['phone_number']);
             $password = sanitize_text_field($_POST['password']);
             $terms_and_conditions = isset($_POST['terms_and_conditions']) ? 1 : 0;
-            $hasedPassword = wp_hash_password($password);
-<<<<<<< HEAD
-
-            $data = array(
-                'first_name' => $first_name,
-=======
+            $hasedPassword = $password;
             $business_name = sanitize_text_field($_POST['business_name']);
+            $has_website = sanitize_text_field($_POST['has_website']);
+            $has_platform = sanitize_text_field($_POST['has_platform']);
+            $has_domain = sanitize_text_field($_POST['has_domain']);
+            $has_registered = sanitize_text_field($_POST['has_registered']);
+            $industry = sanitize_text_field($_POST['industry']);
             //----------------------------------------------------------------------
             // Prepare email content
             $to = 'arehmanzilon@gmail.com';
@@ -165,20 +149,19 @@ if ($save_data_to_db == 1) {
 
             //----------------------------------------------------------------------
             $data = array(
-               'first_name' => $first_name,
->>>>>>> 36f7441ac0c1f73c69d7c9d24e3b12cdbe95048d
+                'first_name' => $first_name,
                 'last_name' => $last_name,
                 'email' => $email,
                 'phone_number' => $phone_number,
                 'password' => $hasedPassword,
                 'terms_and_conditions' => $terms_and_conditions,
-<<<<<<< HEAD
-=======
+                'business_info_choice' => $industry,
+                'platform' => $has_platform,
+                'register' => $has_registered,
                 "CouponCode" => $custTrackingId,
                 "Referer" => $referer,
                 "CustTrackingId" => $custTrackingId,
                 "CuId" => $cuId,
->>>>>>> 36f7441ac0c1f73c69d7c9d24e3b12cdbe95048d
             );
 
             $format = array(
@@ -227,55 +210,7 @@ $options = get_option('custom_settings');
 $save_data_to_db = isset($options['save_data_to_db']) ? $options['save_data_to_api'] : 0;
 
 if ($save_data_to_db == 1) {
-<<<<<<< HEAD
-    /*
-    function custom_2form_ajax_handler()
-    {
 
-    // Check if required fields are empty
-    if (empty($_POST['business_name']) || empty($_POST['business_info_choice'])) {
-    echo 'error';
-    wp_die();
-    }
-
-    if (isset($_POST['business_name']) && isset($_POST['business_info_choice'])) {
-    global $wpdb;
-    $table_name = $wpdb->prefix . 'custom_registration_data';
-    $business_name = sanitize_text_field($_POST['business_name']);
-    $business_info_choice = sanitize_text_field($_POST['business_info_choice']);
-
-    // Store business data in session
-    $_SESSION['business_name'] = $business_name;
-    $_SESSION['business_info_choice'] = $business_info_choice;
-
-    if (!session_id()) {
-    session_start();
-    }
-
-    // Check if the email is stored in the session
-    if (isset($_SESSION['user_email'])) {
-    $user_email = $_SESSION['user_email'];
-    $user_id = $_SESSION['saasy_user_id'];
-
-    }
-
-    $wpdb->update(
-    $table_name,
-    array(
-    'business_name' => $business_name,
-    'business_info_choice' => $business_info_choice,
-    ),
-    array('email' => $user_email)
-    );
-
-    echo 'success';
-    }
-    wp_die();
-    }
-     */
-=======
-
->>>>>>> 36f7441ac0c1f73c69d7c9d24e3b12cdbe95048d
     function custom_2form_ajax()
     {
 // Enqueue the script

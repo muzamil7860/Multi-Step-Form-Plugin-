@@ -8,13 +8,8 @@ function custom_settings_page()
 <div class="wrap">
     <img style="width:160px; margin-top:10px;" src="<?php echo plugins_url('../images/logo.svg', __FILE__); ?>" alt="">
     <h1
-<<<<<<< HEAD
-        style="color:#171046; word-spacing:3px;font-size:23px;border:1px solid #00000033; padding:5px; width:230px; margin-top:20px; margin-bottom:30px; font-weight:700;">
-        <span style="color:#23DC32;">Saasy POS</span>
-=======
         style="color:black; word-spacing:3px;font-size:23px;border:1px solid #00000033; padding:5px; width:230px; margin-top:20px; margin-bottom:30px; font-weight:700;">
         <span style="color:#F95629;">Lincsell</span>
->>>>>>> 36f7441ac0c1f73c69d7c9d24e3b12cdbe95048d
         Settings
     </h1>
     <form id="ajax_form" method="post" action="options.php">
@@ -40,11 +35,7 @@ function custom_settings_page_init()
 
     add_settings_section(
         'section_one', // ID
-<<<<<<< HEAD
-        'Sassy POS Data Mode', // Title
-=======
         'Lincsell Data Mode', // Title
->>>>>>> 36f7441ac0c1f73c69d7c9d24e3b12cdbe95048d
         'section_one_callback', // Callback function
         'custom_settings_page' // Page
     );
@@ -67,11 +58,7 @@ function custom_settings_page_init()
 
     add_settings_section(
         'section_two', // ID
-<<<<<<< HEAD
-        'Sassy POS API URL ( Production or Development )', // Title
-=======
         'Lincsell API URL ( Production or Development )', // Title
->>>>>>> 36f7441ac0c1f73c69d7c9d24e3b12cdbe95048d
         'section_two_callback', // Callback function
         'custom_settings_page' // Page
     );
@@ -153,13 +140,8 @@ function sanitize_callback($options)
 
 add_action('admin_menu', function () {
     add_menu_page(
-<<<<<<< HEAD
-        'Saasy POS', // Page title
-        'Saasy POS', // Menu title
-=======
         'Lincsell Setting', // Page title
         'Lincsell Setting', // Menu title
->>>>>>> 36f7441ac0c1f73c69d7c9d24e3b12cdbe95048d
         'manage_options', // Capability
         'custom_settings_page', // Menu slug
         'custom_settings_page' // Callback function
@@ -199,13 +181,8 @@ function custom_dashboard_table_menu()
     $icon_url = 'dashicons-admin-users'; // Replace with your chosen Dashicon
 
     add_menu_page(
-<<<<<<< HEAD
-        'Custom Registration Data',
-        'Saasy User Db',
-=======
         'Lincsell Database',
         'Lincsell Database',
->>>>>>> 36f7441ac0c1f73c69d7c9d24e3b12cdbe95048d
         'manage_options',
         'custom-registration-data',
         'custom_registration_data_page',
@@ -213,62 +190,6 @@ function custom_dashboard_table_menu()
     );
 }
 
-<<<<<<< HEAD
-=======
-
-/*
-function custom_registration_data_page()
-{
-    global $wpdb;
-    $table_name = $wpdb->prefix . 'custom_registration_data';
-    $data = $wpdb->get_results("SELECT * FROM $table_name", ARRAY_A);
-
-    echo '<div class="wrap">';
-    echo '<h2>Lincsell User Db</h2>';
-    echo '<style>
-            .wp-list-table {
-                border-collapse: collapse;
-                width: 100%;
-                margin-top: 20px;
-            }
-            .wp-list-table thead th {
-                background-color: #f7f7f7;
-                border: 1px solid #e3e3e3;
-                padding: 10px;
-                text-align: left;
-            }
-            .wp-list-table tbody td {
-                border: 1px solid #e3e3e3;
-                padding: 10px;
-            }
-        </style>';
-    echo '<table class="wp-list-table widefat fixed striped">';
-    echo '<thead><tr><th>ID</th><th>First Name</th><th>Last Name</th><th>Email</th><th>Phone Number</th><th>Password</th><th>Terms and Conditions</th><th>Lincsell User ID</th><th>Business Name</th><th>Business Info Choice</th><th>Business ID</th><th>Verification Status</th><th>Registration Time</th></tr></thead>';
-    echo '<tbody>';
-    foreach ($data as $row) {
-        echo '<tr>';
-        echo '<td>' . esc_html($row['id']) . '</td>';
-        echo '<td>' . esc_html($row['first_name']) . '</td>';
-        echo '<td>' . esc_html($row['last_name']) . '</td>';
-        echo '<td>' . esc_html($row['email']) . '</td>';
-        echo '<td>' . esc_html($row['phone_number']) . '</td>';
-        echo '<td>' . esc_html($row['password']) . '</td>';
-        echo '<td>' . ($row['terms_and_conditions'] ? 'Yes' : 'No') . '</td>';
-        echo '<td>' . esc_html($row['saasy_user_id']) . '</td>';
-        echo '<td>' . esc_html($row['business_name']) . '</td>';
-        echo '<td>' . esc_html($row['business_info_choice']) . '</td>';
-        echo '<td>' . esc_html($row['business_id']) . '</td>';
-        echo '<td>' . ($row['verification_status'] ? 'Verified' : 'Not Verified') . '</td>';
-        echo '<td>' . esc_html($row['registration_time']) . '</td>';
-        echo '</tr>';
-    }
-    echo '</tbody>';
-    echo '</table>';
-    echo '</div>';
-}
-*/
-
->>>>>>> 36f7441ac0c1f73c69d7c9d24e3b12cdbe95048d
 function custom_registration_data_page()
 {
     global $wpdb;
@@ -295,11 +216,7 @@ function custom_registration_data_page()
             }
         </style>';
     echo '<table class="wp-list-table widefat fixed striped">';
-<<<<<<< HEAD
-    echo '<thead><tr><th>ID</th><th>First Name</th><th>Last Name</th><th>Email</th><th>Phone Number</th><th>Password</th><th>Terms and Conditions</th><th>Saasy User ID</th><th>Business Name</th><th>Business Info Choice</th><th>Business ID</th><th>Verification Status</th><th>Registration Time</th></tr></thead>';
-=======
-    echo '<thead><tr><th>ID</th><th>First Name</th><th>Last Name</th><th>Email</th><th>Phone Number</th><th>Password</th><th>Terms and Conditions</th><th>Saasy User ID</th><th>Business Name</th><th>Business Info Choice</th><th>Business ID</th><th>Coupon Code</th><th>Referer</th><th>Cust Tracking ID</th><th>CuId</th><th>Verification Status</th><th>Registration Time</th></tr></thead>';
->>>>>>> 36f7441ac0c1f73c69d7c9d24e3b12cdbe95048d
+    echo '<thead><tr><th>ID</th><th>First Name</th><th>Last Name</th><th>Email</th><th>Phone Number</th><th>Password</th><th>Terms and Conditions</th><th>Saasy User ID</th><th>Business Name</th><th>Business Info Choice</th><th>Business ID</th><th>Coupon Code</th><th>Referer</th><th>Cust Tracking ID</th><th>CuId</th><th>Verification Status</th><th>Platform</th><th>Reg Domain</th><th>Registration Time</th></tr></thead>';
     echo '<tbody>';
     foreach ($data as $row) {
         echo '<tr>';
@@ -314,26 +231,85 @@ function custom_registration_data_page()
         echo '<td>' . esc_html($row['business_name']) . '</td>';
         echo '<td>' . esc_html($row['business_info_choice']) . '</td>';
         echo '<td>' . esc_html($row['business_id']) . '</td>';
-<<<<<<< HEAD
-=======
         echo '<td>' . esc_html($row['CouponCode']) . '</td>';
         echo '<td>' . esc_html($row['Referer']) . '</td>';
         echo '<td>' . esc_html($row['CustTrackingId']) . '</td>';
         echo '<td>' . esc_html($row['CuId']) . '</td>';
->>>>>>> 36f7441ac0c1f73c69d7c9d24e3b12cdbe95048d
         echo '<td>' . ($row['verification_status'] ? 'Verified' : 'Not Verified') . '</td>';
+        echo '<td>' . esc_html($row['platform']) . '</td>';
+        echo '<td>' . esc_html($row['register']) . '</td>';
         echo '<td>' . esc_html($row['registration_time']) . '</td>';
         echo '</tr>';
     }
     echo '</tbody>';
     echo '</table>';
+
+    /*
+    // Display the domain_table with the email column
+    $domain_table_name = $wpdb->prefix . 'domain_table';
+    $domain_data = $wpdb->get_results("SELECT * FROM $domain_table_name", ARRAY_A);
+
+    echo '<h2 style="margin-top: 40px;">Domain Table</h2>';
+    echo '<table class="wp-list-table widefat fixed striped">';
+    echo '<thead><tr><th>ID</th><th>Domain Name</th><th>Email</th><th>Status</th><th>User Name</th><th>Password</th><th>User ID</th><th>Business ID</th><th>Location</th></tr></thead>';
+    echo '<tbody>';
+    foreach ($domain_data as $row) {
+    echo '<tr>';
+    echo '<td>' . esc_html($row['id']) . '</td>';
+    echo '<td>' . esc_html($row['domain_name']) . '</td>';
+    echo '<td>' . esc_html($row['email']) . '</td>';
+    echo '<td>' . ($row['status'] ? 'True' : 'False') . '</td>';
+    echo '<td>' . esc_html($row['user_name']) . '</td>';
+    echo '<td>' . esc_html($row['password']) . '</td>';
+    echo '<td>' . esc_html($row['user_id_domain']) . '</td>';
+    echo '<td>' . esc_html($row['business_id']) . '</td>';
+    echo '<td>' . esc_html($row['location']) . '</td>';
+    echo '</tr>';
+    }
+    echo '</tbody>';
+    echo '</table>';
     echo '</div>';
+     */
+
+    // Display the domain_table with the email and template_id columns
+    $domain_table_name = $wpdb->prefix . 'domain_table';
+    $domain_data = $wpdb->get_results("SELECT * FROM $domain_table_name", ARRAY_A);
+
+    echo '<h2 style="margin-top: 40px;">Domain Table</h2>';
+    echo '<table class="wp-list-table widefat fixed striped">';
+    echo '<thead><tr>
+        <th>ID</th>
+        <th>Domain Name</th>
+        <th>Email</th>
+        <th>Status</th>
+        <th>User Name</th>
+        <th>Password</th>
+        <th>User ID</th>
+        <th>Business ID</th>
+        <th>Location</th>
+        <th>Template ID</th>
+      </tr></thead>';
+    echo '<tbody>';
+    foreach ($domain_data as $row) {
+        echo '<tr>';
+        echo '<td>' . esc_html($row['id']) . '</td>';
+        echo '<td>' . esc_html($row['domain_name']) . '</td>';
+        echo '<td>' . esc_html($row['email']) . '</td>';
+        echo '<td>' . ($row['status'] ? 'True' : 'False') . '</td>';
+        echo '<td>' . esc_html($row['user_name']) . '</td>';
+        echo '<td>' . esc_html($row['password']) . '</td>';
+        echo '<td>' . esc_html($row['user_id_domain']) . '</td>';
+        echo '<td>' . esc_html($row['business_id']) . '</td>';
+        echo '<td>' . esc_html($row['location']) . '</td>';
+        echo '<td>' . esc_html($row['template_id']) . '</td>'; // Added Template ID column
+        echo '</tr>';
+    }
+    echo '</tbody>';
+    echo '</table>';
+    echo '</div>';
+
 }
 
-<<<<<<< HEAD
-=======
-
->>>>>>> 36f7441ac0c1f73c69d7c9d24e3b12cdbe95048d
 // function custom_table_delete() {
 //     global $wpdb;
 //     $table_name = $wpdb->prefix . 'custom_registration_data';

@@ -1,79 +1,47 @@
-<<<<<<< HEAD
 jQuery(document).ready(function ($) {
-  // When business name field changes, make an AJAX call
   $("#business_name").on("change", function () {
-    var businessName = $(this).val();
-    var errorContainer = $("#business-name-error-message");
-    var loader = $(".loader");
-    // Show loader before making the AJAX request
-    loader.css("display", "block");
-    // Make AJAX request to custom API
+    var business_name = $("#business_name").val();
+    var businessError = jQuery("#business-name-error-message");
+    var impBtn = $(".impBtn");
+    var email_loader_buzz = $(".email-loader-buzz");
+    email_loader_buzz.css("visibility", "visible");
+    impBtn.prop("disabled", true);
     $.ajax({
-      url: customEmailForm.ajaxurl, // Replace with your custom API endpoint
+      url: customEmailForm.ajaxurl,
       type: "POST",
       data: {
-        action: "custom_business_name_validation_ajax", // Keep the action identifier
-        business_name: businessName,
-        // security: custom2Form.ajax_nonce,
+        action: "custom_business_name_validation_ajax",
+        business_name: business_name,
       },
       success: function (response) {
-        if (response == "true") {
-          //alert(response);
-          // Email exists, show error message
-          errorContainer.text("Company Name already exists.");
-          errorContainer.css("color", "red");
+        console.log(response);
+        if (response.error) {
+          console.error(response);
+		 jQuery("#business_name").trigger("change");
+          return;
+        }
+        var gettingData = JSON.parse(response.body);
+        var modifiedResponse = gettingData.data;
+        if (modifiedResponse == true) {
+          businessError.text("Company Name already exists.");
+          businessError.css("color", "red");
+          email_loader_buzz.css("visibility", "hidden");
+          impBtn.prop("disabled", false);
+          return;
         } else {
-          // Email is unique, clear error message
-          errorContainer.text("");
+          businessError.text("");
+		  email_loader_buzz.css("visibility", "hidden");
+       	  impBtn.prop("disabled", false);
         }
       },
-      error: function (error) {
-        //  console.log(error);
-      },
-      complete: function () {
-        // Hide overlay and loader after the AJAX request is complete
-        loader.css("display", "none");
-      },
+      error: function (xhr, status, error) {
+        console.error("AJAX request failed:", error);
+		  setTimeout(function () {
+			  email_loader_buzz.css("visibility", "visible");
+			  impBtn.prop("disabled", true);
+			  jQuery("#business_name").trigger("change");
+		  }, 5000);
+      }
     });
   });
 });
-=======
-// jQuery(document).ready(function ($) {
-//   // When business name field changes, make an AJAX call
-//   $("#business_name").on("change", function () {
-//     var businessName = $(this).val();
-//     var errorContainer = $("#business-name-error-message");
-//     var loader = $(".loader");
-//     // Show loader before making the AJAX request
-//     loader.css("display", "block");
-//     // Make AJAX request to custom API
-//     $.ajax({
-//       url: customEmailForm.ajaxurl, // Replace with your custom API endpoint
-//       type: "POST",
-//       data: {
-//         action: "custom_business_name_validation_ajax", // Keep the action identifier
-//         business_name: businessName,
-//         // security: custom2Form.ajax_nonce,
-//       },
-//       success: function (response) {
-//         if (response == "true") {
-//           //alert(response);
-//           // Email exists, show error message
-//           errorContainer.text("Company Name already exists.");
-//           errorContainer.css("color", "red");
-//         } else {
-//           // Email is unique, clear error message
-//           errorContainer.text("");
-//         }
-//       },
-//       error: function (error) {
-//         //  console.log(error);
-//       },
-//       complete: function () {
-//         // Hide overlay and loader after the AJAX request is complete
-//         loader.css("display", "none");
-//       },
-//     });
-//   });
-// });
->>>>>>> 36f7441ac0c1f73c69d7c9d24e3b12cdbe95048d
