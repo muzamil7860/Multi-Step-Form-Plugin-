@@ -37,7 +37,8 @@ function custom_form_ajax_handler_full_form()
 	$last_name = sanitize_text_field($_POST['lastName']);
 	$email = sanitize_text_field($_POST['email']);
 	$phone_number = sanitize_text_field($_POST['phone']);
-	$password = sanitize_text_field($_POST['password']);
+//  $password = sanitize_text_field($_POST['password']);
+	$password = $_POST['password'];
 	$has_platform = sanitize_text_field($_POST['has_platform']);
 	$has_registered = sanitize_text_field($_POST['has_registered']);
 	//Fetch API URL from options table
@@ -68,7 +69,7 @@ function custom_form_ajax_handler_full_form()
 	$domain_row = $wpdb->get_row("SELECT * FROM $domain_table WHERE status = false LIMIT 1", ARRAY_A);
 	//$unique_domain_url =$domain_row['domain_name'];
 	// Check if $domain_row is not null, otherwise set to default URL
-	$unique_domain_url = $domain_row ? $domain_row['domain_name'] : 'https://development.stg.lincsell.com';
+	$unique_domain_url = $domain_row ? $domain_row['domain_name'] : 'https://development.lincsell.com';
 
 	// Make request to custom API for email validation
 

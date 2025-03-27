@@ -262,6 +262,7 @@ jQuery(document).ready(function ($) {
           jQuery(".putEmail").text(email);
           jQuery(".main-container-email").show();
           jQuery(".otpBox:first").focus();
+		  jQuery("#resendEmail").removeAttr("disabled");
         } else {
           console.log("OTP Didnot sent to Email");
           console.log(alpha.message);
@@ -278,7 +279,7 @@ jQuery(document).ready(function ($) {
 
   //Handeling close button
   $("#continueProcessButtonClose").on("click", function () {
-    if (!localWpEmailSuccess && !ApiEmailSuccess) {
+//     if (!localWpEmailSuccess && !ApiEmailSuccess) { 
 		$(".loaderContinue").hide();
       $("#email-error-message").text(
         "Email already exists. Please choose a different one."
@@ -287,7 +288,7 @@ jQuery(document).ready(function ($) {
       $("#continueProcessButton").hide();
       $("#tempClass").show();
       exit;
-    }
+//     }  
     $("#email-error-message").text("");
     $("#tempClass").hide();
   });

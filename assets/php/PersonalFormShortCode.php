@@ -22,7 +22,7 @@ function custom_registration_form_shortcode()
 
 <div class="monster" id="monsterDiv" style="display:none">
 	<button class="close-button" style="display:none;">
-		<img src="http://lincsell.com/wp-content/uploads/2024/01/crooos-sign.svg" alt="Close" />
+		<img src="../wp-content/uploads/2024/01/crooos-sign.svg" alt="Close" />
 	</button>
 
 
@@ -42,7 +42,7 @@ function custom_registration_form_shortcode()
 
 		<i class="fas fa-spinner fa-spin" style="color:white; font-size:27px;"></i>
 		<div class="loading-text mt-2" style="color:white">
-			<p>Verifying Code...</p>
+			<p class="verifying_init">Verifying Code...</p>
 		</div>
 	</div>
 
@@ -82,8 +82,8 @@ function custom_registration_form_shortcode()
 				<p style="text-align:center;">It looks like you started your free trial process with this email but didn’t complete it.
 					<br>Would you like to continue the previous session?</p>
 				<div style="d-flex flex-row">
-					<a style="width:fit-content; font-size: 15px; letter-spacing: 0.05rem; border-radius:24px;padding-right: 35px;padding-left: 35px;" class="small-buttons-yes py-2" id="continueProcessButtonClose" type="button">Start with New Email </a>
-					<a style="width:fit-content; font-size: 15px; letter-spacing: 0.05rem; border-radius:24px;padding-right: 35px;padding-left: 35px;" class="small-buttons-no py-2" id="continueProcessButton" type="button">Continue Previous Session
+					<a style="width:fit-content; font-size: 15px; letter-spacing: 0.05rem; border-radius:7px;padding-right: 35px;padding-left: 35px;" class="small-buttons-yes py-2" id="continueProcessButtonClose" type="button">Start with New Email </a>
+					<a style="width:fit-content; font-size: 15px; letter-spacing: 0.05rem; border-radius:7px;padding-right: 35px;padding-left: 35px;" class="small-buttons-no py-2" id="continueProcessButton" type="button">Continue Previous Session
 					</a>
 				</div>
 			</div>
@@ -416,9 +416,9 @@ function custom_registration_form_shortcode()
 										"Create
 										my Free
 										account", you
-										agree to our <a href="https://lincsell.com/terms-of-service/"
+										agree to our <a href="../terms-of-service/"
 														target="_blank"><span style="color:white; font-weight:500;">Terms of
-										Service</span></a> and <a href="https://lincsell.com/privacy-policy/"
+										Service</span></a> and <a href="../privacy-policy/"
 																  target="_blank"><span style="color:white; font-weight:500;">Privacy
 										Policy.</span></a><br></label>
 								</div>
@@ -440,7 +440,7 @@ function custom_registration_form_shortcode()
 
 			<div class="col-11 col-md-11  columns-class-email pb-3 pt-3 px-3 px-md-3">
 				<div class="d-flex flex-column align-items-center">
-					<a href="https://lincsell.com/"> <img
+					<a href="<?php echo home_url(); ?>"> <img
 														  src="<?php echo plugins_url('../images/logo.svg', __FILE__); ?>" alt="Phone Icon"
 														  style="width: 180px; "></a>
 
@@ -512,7 +512,7 @@ inputmode="numeric" />
 							<p class="plugin_para paraClassCustom hidPara" style="margin-bottom:0px;"> Didn't receive
 								the
 								verification code?</p>
-							<button class="btn btn-customm btn-primary" id="resendEmail">Resend Code</button>
+							<button class="btn btn-customm btn-primary" id="resendEmail" disabled>Resend Code</button>
 							<div> <span id="countdownAlpha"></span></div>
 						</div>
 					</div>

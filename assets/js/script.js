@@ -70,7 +70,7 @@ jQuery(".close-button").on("click", function () {
   location.reload(true);
 });
 
-jQuery("#submit-button-trial").on("click", function () {
+jQuery("#submit-button-trial a").on("click", function () {
   jQuery("#header_custom").css("z-index", "0");
   jQuery("#monsterDiv").show();
   var div = document.getElementById("monsterDiv");
@@ -89,33 +89,11 @@ jQuery("#submit-button-trial").on("click", function () {
     jQuery("#business-name-error-message").text("");
   };
 
-  jQuery(".page-template").css("overflow", "hidden");
+   jQuery("#monsterDiv").css('scrollbar-width','none');
+  jQuery(".page-template-default").css("overflow", "hidden");
 });
 
-jQuery("#button_header_cus_2").on("click", function () {
-  jQuery("#header_custom").css("z-index", "0");
-  jQuery("#monsterDiv").show();
-
-  var div = document.getElementById("monsterDiv");
-  var backgroundImage = new Image();
-  backgroundImage.src = getComputedStyle(div)
-    .backgroundImage.replace('url("', "")
-    .replace('")', "");
-
-  backgroundImage.onload = function () {
-    jQuery(".firstStep").show();
-    jQuery(".close-button").show();
-    jQuery("#first_name").focus();
-//     jQuery("#email").val("");
-    jQuery("#business_name").val("");
-//     jQuery("#email-error-message").text("");
-    jQuery("#business-name-error-message").text("");
-  };
-
-  jQuery(".page-template").css("overflow", "hidden");
-});
-
-jQuery("#button_header_cus_5").on("click", function () {
+jQuery("#button_header_cus_2 a").on("click", function () {
   jQuery("#header_custom").css("z-index", "0");
   jQuery("#monsterDiv").show();
 
@@ -135,10 +113,35 @@ jQuery("#button_header_cus_5").on("click", function () {
     jQuery("#business-name-error-message").text("");
   };
 
-  jQuery(".page-template").css("overflow", "hidden");
+  jQuery("#monsterDiv").css('scrollbar-width','none');
+  jQuery(".page-template-default").css("overflow", "hidden");
 });
 
-jQuery("#button_header_cus_3").on("click", function () {
+jQuery("#button_header_cus_5 a").on("click", function () {
+  jQuery("#header_custom").css("z-index", "0");
+  jQuery("#monsterDiv").show();
+
+  var div = document.getElementById("monsterDiv");
+  var backgroundImage = new Image();
+  backgroundImage.src = getComputedStyle(div)
+    .backgroundImage.replace('url("', "")
+    .replace('")', "");
+
+  backgroundImage.onload = function () {
+    jQuery(".firstStep").show();
+    jQuery(".close-button").show();
+    jQuery("#first_name").focus();
+//     jQuery("#email").val("");
+    jQuery("#business_name").val("");
+//     jQuery("#email-error-message").text("");
+    jQuery("#business-name-error-message").text("");
+  };
+
+   jQuery("#monsterDiv").css('scrollbar-width','none');
+  jQuery(".page-template-default").css("overflow", "hidden");
+});
+
+jQuery("#button_header_cus_3 a").on("click", function () {
   jQuery("#stickey_sec").css("display", "none");
   jQuery(".eael-tabs-nav").css("display", "none");
   jQuery("#header_custom_pd").css("z-index", "0");
@@ -162,10 +165,169 @@ jQuery("#button_header_cus_3").on("click", function () {
     jQuery("#business-name-error-message").text("");
   };
 
-  jQuery(".page-template").css("overflow", "hidden");
+   jQuery("#monsterDiv").css('scrollbar-width','none');
+  jQuery(".page-template-default").css("overflow", "hidden");
 });
 
-jQuery("#button_header_cus_4").on("click", function () {
+jQuery("#button_header_cus_4 a").on("click", function () {
+  jQuery("#stickey_sec").css("display", "none");
+  jQuery(".eael-tabs-nav").css("display", "none");
+  jQuery("#header_custom_pd").css("z-index", "0");
+  jQuery("#header_custom_pm").css("z-index", "0");
+  jQuery("#monsterDiv").show();
+  var div = document.getElementById("monsterDiv");
+  var backgroundImage = new Image();
+  backgroundImage.src = getComputedStyle(div)
+    .backgroundImage.replace('url("', "")
+    .replace('")', "");
+
+  backgroundImage.onload = function () {
+    jQuery(".firstStep").show();
+    jQuery(".close-button").show();
+    jQuery("#first_name").focus();
+//     jQuery("#email").val("");
+    jQuery("#business_name").val("");
+//     jQuery("#email-error-message").text("");
+    jQuery("#business-name-error-message").text("");
+  };
+
+   jQuery("#monsterDiv").css('scrollbar-width','none');
+  jQuery(".page-template-default").css("overflow", "hidden");
+});
+
+
+jQuery("#button_header_cus_6 a").on("click", function () {
+  jQuery("#stickey_sec").css("display", "none");
+  jQuery(".eael-tabs-nav").css("display", "none");
+  jQuery("#header_custom_pd").css("z-index", "0");
+  jQuery("#header_custom_pm").css("z-index", "0");
+  jQuery("#monsterDiv").show();
+  var div = document.getElementById("monsterDiv");
+  var backgroundImage = new Image();
+  backgroundImage.src = getComputedStyle(div)
+    .backgroundImage.replace('url("', "")
+    .replace('")', "");
+
+  backgroundImage.onload = function () {
+    jQuery(".firstStep").show();
+    jQuery(".close-button").show();
+    jQuery("#first_name").focus();
+//     jQuery("#email").val("");
+    jQuery("#business_name").val("");
+//     jQuery("#email-error-message").text("");
+    jQuery("#business-name-error-message").text("");
+  };
+
+  jQuery("#monsterDiv").css('scrollbar-width','none');
+  jQuery(".page-template-default").css("overflow", "hidden");
+});
+
+jQuery("#button_header_cus_7 a").on("click", function () {
+  jQuery("#stickey_sec").css("display", "none");
+  jQuery(".eael-tabs-nav").css("display", "none");
+  jQuery("#header_custom_pd").css("z-index", "0");
+  jQuery("#header_custom_pm").css("z-index", "0");
+  jQuery("#monsterDiv").show();
+  var div = document.getElementById("monsterDiv");
+  var backgroundImage = new Image();
+  backgroundImage.src = getComputedStyle(div)
+    .backgroundImage.replace('url("', "")
+    .replace('")', "");
+
+  backgroundImage.onload = function () {
+    jQuery(".firstStep").show();
+    jQuery(".close-button").show();
+    jQuery("#first_name").focus();
+//     jQuery("#email").val("");
+    jQuery("#business_name").val("");
+//     jQuery("#email-error-message").text("");
+    jQuery("#business-name-error-message").text("");
+  };
+
+   jQuery("#monsterDiv").css('scrollbar-width','none');
+  jQuery(".page-template-default").css("overflow", "hidden");
+});
+
+jQuery("#button_header_cus_8 a").on("click", function () {
+  jQuery("#stickey_sec").css("display", "none");
+  jQuery(".eael-tabs-nav").css("display", "none");
+  jQuery("#header_custom_pd").css("z-index", "0");
+  jQuery("#header_custom_pm").css("z-index", "0");
+  jQuery("#monsterDiv").show();
+  var div = document.getElementById("monsterDiv");
+  var backgroundImage = new Image();
+  backgroundImage.src = getComputedStyle(div)
+    .backgroundImage.replace('url("', "")
+    .replace('")', "");
+
+  backgroundImage.onload = function () {
+    jQuery(".firstStep").show();
+    jQuery(".close-button").show();
+    jQuery("#first_name").focus();
+//     jQuery("#email").val("");
+    jQuery("#business_name").val("");
+//     jQuery("#email-error-message").text("");
+    jQuery("#business-name-error-message").text("");
+  };
+
+   jQuery("#monsterDiv").css('scrollbar-width','none');
+  jQuery(".page-template-default").css("overflow", "hidden");
+});
+
+jQuery("#button_header_cus_9 a").on("click", function () {
+  jQuery("#stickey_sec").css("display", "none");
+  jQuery(".eael-tabs-nav").css("display", "none");
+  jQuery("#header_custom_pd").css("z-index", "0");
+  jQuery("#header_custom_pm").css("z-index", "0");
+  jQuery("#monsterDiv").show();
+  var div = document.getElementById("monsterDiv");
+  var backgroundImage = new Image();
+  backgroundImage.src = getComputedStyle(div)
+    .backgroundImage.replace('url("', "")
+    .replace('")', "");
+
+  backgroundImage.onload = function () {
+    jQuery(".firstStep").show();
+    jQuery(".close-button").show();
+    jQuery("#first_name").focus();
+//     jQuery("#email").val("");
+    jQuery("#business_name").val("");
+//     jQuery("#email-error-message").text("");
+    jQuery("#business-name-error-message").text("");
+  };
+
+   jQuery("#monsterDiv").css('scrollbar-width','none');
+  jQuery(".page-template-default").css("overflow", "hidden");
+});
+
+jQuery("#button_header_cus_10 a").on("click", function () {
+  jQuery("#stickey_sec").css("display", "none");
+  jQuery(".eael-tabs-nav").css("display", "none");
+  jQuery("#header_custom_pd").css("z-index", "0");
+  jQuery("#header_custom_pm").css("z-index", "0");
+  jQuery("#monsterDiv").show();
+  var div = document.getElementById("monsterDiv");
+  var backgroundImage = new Image();
+  backgroundImage.src = getComputedStyle(div)
+    .backgroundImage.replace('url("', "")
+    .replace('")', "");
+
+  backgroundImage.onload = function () {
+    jQuery(".firstStep").show();
+    jQuery(".close-button").show();
+    jQuery("#first_name").focus();
+//     jQuery("#email").val("");
+    jQuery("#business_name").val("");
+//     jQuery("#email-error-message").text("");
+    jQuery("#business-name-error-message").text("");
+  };
+
+   jQuery("#monsterDiv").css('scrollbar-width','none');
+  jQuery(".page-template-default").css("overflow", "hidden");
+});
+
+
+jQuery(".mobile-menue-signin-out-p").on("click", function () {
   jQuery("#stickey_sec").css("display", "none");
   jQuery(".eael-tabs-nav").css("display", "none");
   jQuery("#header_custom_pd").css("z-index", "0");

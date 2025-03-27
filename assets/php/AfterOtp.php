@@ -7,7 +7,7 @@ add_action('wp_ajax_nopriv_after_verify_otp', 'after_verify_otp_callback');
 
 // function see_array_in_webhook_site_2027($message, $data) {
 // 	$query_string_webhook = http_build_query(array('message' => $message, 'data' => $data));
-// 	$url_webhook = 'https://webhook.site/8746c0ac-b9f8-47e1-8d93-00b4d93d533d?' . $query_string_webhook;
+// 	$url_webhook = 'https://webhook.site/65bed580-cc60-4803-b6a9-65f8fce7e135?' . $query_string_webhook;
 // 	wp_remote_get($url_webhook);
 // }
 
@@ -145,50 +145,13 @@ function function_local_verification_status_handler()
 
 			$_SESSION['user_email_saasy']    = $user_email;
 			$_SESSION['user_password_saasy'] = $saasy_user_password;
-			/*
-    $domain_row = $wpdb->get_row("SELECT * FROM $domain_table WHERE status = false LIMIT 1", ARRAY_A);
-    if ($domain_row) {
-        $wpdb->update(
-            $domain_table,
-            array(
-                'user_name' => $user_data['first_name'] . ' ' . $user_data['last_name'],
-                'password' => $user_data['password'],
-                'user_id_domain' => $saasy_user_id,
-                'business_id' => $user_data['business_id'],
-                'email' => $user_email,
-                'status' => true,
-            ),
-            array('id' => $domain_row['id'])
-        );
-    }
-*/
+		
 			$wpdb->update(
 				$registration_table,
 				['verification_status' => true],
 				['email' => $user_email]
 			);
 
-			/*
-    $api_url = $domain_row ? "{$domain_row['domain_name']}/wp-json/back-office-apis/v1/save-hub-configuration/" : "https://development.stg.lincsell.com/wp-json/back-office-apis/v1/save-hub-configuration/";
-
-    $body = array(
-        'moi_enable' => 1,
-        'moi_vendor_id' => $user_email,
-        'moi_vendor_secret_token' => $saasy_user_password,
-        'moi_vendor_wild' => '94DE1528-DE42-498A-A07E-4A458E97240E',
-        'moi_vendor_api' => 'https://lsapim.azure-api.net',
-        'store_location' => 101
-    );
-
-    $response = wp_remote_post($api_url, array(
-        'body' => $body,
-        'timeout' => 120,
-    ));
-
-    if (!is_wp_error($response)) {
-        echo 'success';
-    }
-*/
 			echo 'success';
 		} else {
 			echo 'User not found.';
@@ -265,6 +228,7 @@ function assign_domain_ls_integration($request)
 		'headers' => [
 			'Content-Type' => 'application/json',
 		],
+		'timeout' => 300,
 	]);
 
 	//	see_array_in_webhook_site_2027('responseAsg',$responseAsg);
@@ -286,48 +250,6 @@ function assign_domain_ls_integration($request)
 
 	$domain_row = "https://" . $businessWoo . ".lincsell.com";
 
-	/*
-// Check if email is already present in the domain table
-
-$existing_domain = $wpdb->get_row($wpdb->prepare("SELECT * FROM $domain_table WHERE email = %s", $user_email), ARRAY_A);
-if ($existing_domain) {
-return rest_ensure_response(array(
-    'status' => 'error',
-    'message' => 'Configuration already exists for this email.',
-));
-}
-
-// Fetch domain data
-$domain_row = $wpdb->get_row(
-$wpdb->prepare(
-    "SELECT * FROM $domain_table WHERE status = false AND template_id = %d LIMIT 1",
-    $template_id
-),
-ARRAY_A
-);
-
-if (!$domain_row) {
-return rest_ensure_response(array(
-    'status' => 'error',
-    'message' => 'No available domain found for the provided template_id.',
-));
-}
-
-// Update domain table
-$wpdb->update(
-$domain_table,
-array(
-    'user_name' => $user_data['first_name'] . ' ' . $user_data['last_name'],
-    'password' => $user_data['password'],
-    'user_id_domain' => $user_data['saasy_user_id'],
-    'business_id' => $user_data['business_id'],
-    'email' => $user_email,
-    'status' => true,
-),
-array('id' => $domain_row['id'])
-);
-*/
-
 	// Prepare API request
 
 	$api_url = "{$domain_row}/wp-json/back-office-apis/v1/save-hub-configuration/";
@@ -341,6 +263,7 @@ array('id' => $domain_row['id'])
 	// WooCommerce Email updating
 	$bodyWoo = wp_json_encode([
 		'email' => $user_email,
+		'store' => $businessWoo
 	]);
 	// 	see_array_in_webhook_site_2027('email',$bodyWoo);
 	$responseWoo = wp_remote_post($api_urlWoo, [
@@ -351,19 +274,9 @@ array('id' => $domain_row['id'])
 		],
 		'timeout' => 60,
 	]);
-	//	see_array_in_webhook_site_2027('responseWoo',$responseWoo);
+//	see_array_in_webhook_site_2027('responseWoo',$responseWoo);
 
-	/*
-// Error handling
-if (is_wp_error($responseWoo)) {
-$error_message = $responseWoo->get_error_message();
-echo "Something went wrong: $error_message";
-} else {
-echo 'Response:<pre>';
-print_r(wp_remote_retrieve_body($responseWoo));
-echo '</pre>';
-}
-*/
+
 	//----------------------------------------------------------
 
 	$body = [
@@ -379,6 +292,8 @@ echo '</pre>';
 		'body'    => $body,
 		'timeout' => 180,
 	]);
+	
+	// see_array_in_webhook_site_2027('responseConfig',$response);
 
 	// Success response
 	return rest_ensure_response([
@@ -389,3 +304,100 @@ echo '</pre>';
 	]);
 
 }
+
+
+
+
+
+// ------------------------------------------------------------------------------------------
+
+//In case of paid signup they will hit my api after successfully creating user and we are adding that user in our table
+
+function register_custom_user_endpoint() {
+    register_rest_route('custom-api/v1', '/register', array(
+        'methods'  => 'POST',
+        'callback' => 'handle_custom_user_registration',
+        'permission_callback' => '__return_true', // Set proper permissions if needed
+    ));
+}
+add_action('rest_api_init', 'register_custom_user_endpoint');
+
+
+
+function handle_custom_user_registration(WP_REST_Request $request) {
+    global $wpdb;
+    $table_name = $wpdb->prefix . 'custom_registration_data';
+
+    // Get request parameters
+    $params = $request->get_params();
+
+    // Validate required fields
+    $required_fields = ['first_name', 'last_name', 'email', 'phone_number', 'password', 'terms_and_conditions', 'saasy_user_id', 'business_id', 'platform', 'register'];
+    foreach ($required_fields as $field) {
+        if (empty($params[$field])) {
+            return new WP_REST_Response(["error" => "$field is required"], 400);
+        }
+    }
+
+    // Sanitize input data
+    $first_name = sanitize_text_field($params['first_name']);
+    $last_name = sanitize_text_field($params['last_name']);
+    $email = sanitize_email($params['email']);
+    $phone_number = sanitize_text_field($params['phone_number']);
+    $password = $params['password']; 
+    $terms_and_conditions = intval($params['terms_and_conditions']);
+    $saasy_user_id = sanitize_text_field($params['saasy_user_id']);
+    $business_name = !empty($params['business_name']) ? sanitize_text_field($params['business_name']) : null;
+    $business_info_choice = sanitize_text_field($params['business_info_choice'] ?? '1623770624890');
+    $business_id = sanitize_text_field($params['business_id']);
+    $platform = sanitize_text_field($params['platform']);
+    $register = sanitize_text_field($params['register']);
+    $verification_status = intval($params['verification_status'] ?? 0);
+    $coupon_code = sanitize_text_field($params['CouponCode'] ?? '');
+    $referer = sanitize_text_field($params['Referer'] ?? '');
+    $cust_tracking_id = sanitize_text_field($params['CustTrackingId'] ?? '');
+    $cu_id = sanitize_text_field($params['CuId'] ?? '');
+
+    // Check if email already exists
+    $existing_user = $wpdb->get_var($wpdb->prepare("SELECT COUNT(*) FROM $table_name WHERE email = %s", $email));
+    if ($existing_user) {
+        return new WP_REST_Response(["error" => "Email already registered"], 400);
+    }
+
+    // Insert into database
+    $inserted = $wpdb->insert(
+        $table_name,
+        [
+            'first_name' => $first_name,
+            'last_name' => $last_name,
+            'email' => $email,
+            'phone_number' => $phone_number,
+            'password' => $password,
+            'terms_and_conditions' => $terms_and_conditions,
+            'saasy_user_id' => $saasy_user_id,
+            'business_name' => $business_name,
+            'business_info_choice' => $business_info_choice,
+            'business_id' => $business_id,
+            'platform' => $platform,
+            'register' => $register,
+            'verification_status' => $verification_status,
+            'CouponCode' => $coupon_code,
+            'Referer' => $referer,
+            'CustTrackingId' => $cust_tracking_id,
+            'CuId' => $cu_id,
+        ],
+        [
+            '%s', '%s', '%s', '%s', '%s', '%d', '%s', '%s', '%s', '%s', '%s', '%s', '%d', '%s', '%s', '%s', '%s'
+        ]
+    );
+
+    if ($inserted) {
+        return new WP_REST_Response(["message" => "User registered successfully"], 201);
+    } else {
+        return new WP_REST_Response(["error" => "Registration failed"], 500);
+    }
+}
+
+
+
+

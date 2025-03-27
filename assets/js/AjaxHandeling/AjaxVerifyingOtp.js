@@ -154,15 +154,10 @@ jQuery(document).ready(function ($) {
 					$(".loaderVerifying").css("display", "none");
 					return;
 				} else {
+					jQuery('.verifying_init').html('Setting up your account.');
 					console.log(response);
 					$("#otpError").html("").hide();
-					// --------------------------------------------------------------
-
-					//$(".main-container-email").css("display", "none");
-					//$(".main-container-after-email").css("display", "block");
-
-					//---------------------------------------------------------------
-					// Ajax to set the boolean value to true for local wp custom plugin table attribut verification_status
+					
 					$.ajax({
 						type: "post",
 						url: customFormFull2Api.ajaxurl,
@@ -171,6 +166,7 @@ jQuery(document).ready(function ($) {
 						},
 
 						success: function (response) {
+							jQuery('.verifying_init').html('Getting your account info.');
 							console.log(response);
 						},
 					});
@@ -201,6 +197,7 @@ jQuery(document).ready(function ($) {
 								console.error(parsedData.message);
 								return;
 							} else {
+								jQuery('.verifying_init').html('Almost Done.');
 								var responseData = response;
 								// Parse the inner JSON string in the body property
 								var bodyData = JSON.parse(responseData.body);
@@ -233,6 +230,9 @@ jQuery(document).ready(function ($) {
 						},
 						error: function (error) {
 							console.log("AJAX error in finish Api:", error);
+							jQuery(".loaderVerifying").css("display", "none");
+							jQuery(".loaderSending").css("display", "none");
+							jQuery(".loaderTechErroring").css("display", "flex");
 						},
 						complete: function () {},
 					});
@@ -240,10 +240,10 @@ jQuery(document).ready(function ($) {
 			},
 			error: function (error) {
 				console.log("AJAX error:", error);
+				loader.css("display", "none");
 			},
 			complete: function () {
-				// Hide overlay and loader after the AJAX request is complete
-				//  $(".loader").css("display", "none");
+			
 			},
 		});
 	});

@@ -108,11 +108,11 @@ dbDelta($sql);
 
 // Insert predefined rows into domain_table
 $default_domains = array(
-'https://temp-w3x9b2.stg.lincsell.com', //template id 1
-'https://temp-f8d1k4.stg.lincsell.com', //template id 2
-'https://temp-p7q3z6.stg.lincsell.com', //template id 3
-'https://temp-l2a5n7.stg.lincsell.com', //template id 1
-'https://temp-v9u4m3.stg.lincsell.com', //template id 2
+'https://temp-w3x9b2.stg.stg.lincsell.com', //template id 1
+'https://temp-f8d1k4.stg.stg.lincsell.com', //template id 2
+'https://temp-p7q3z6.stg.stg.lincsell.com', //template id 3
+'https://temp-l2a5n7.stg.stg.lincsell.com', //template id 1
+'https://temp-v9u4m3.stg.stg.lincsell.com', //template id 2
 );
 
 foreach ($default_domains as $domain) {
@@ -190,7 +190,7 @@ array(
         'save_data_to_db' => 1,
         'save_data_to_api' => 1,
         'api_url' => 'https://lsapim.azure-api.net/auth-svc/api/',
-        'email_verification_url' => 'https://preapp.stg.lincsell.com/#/pages/signin?',
+        'email_verification_url' => 'https://preapp.lincsell.com/#/pages/signin?',
     );
 
     // Check if options exist, if not, add them
@@ -217,3 +217,18 @@ function custom_registration_plugin_deactivate()
     $wpdb->query("DROP TABLE IF EXISTS $table_name");
     //   $wpdb->query("DELETE FROM $table_name");
 }
+
+
+// 404 page redirect
+
+function custom_redirect_404_to_elementor_page_permanent() {
+    if (is_404()) {
+        wp_redirect(home_url('/page-not-found'), 301); 
+        exit;
+    }
+}
+add_action('template_redirect', 'custom_redirect_404_to_elementor_page_permanent');
+
+
+
+

@@ -34,9 +34,9 @@ jQuery(document).ready(function ($) {
 
     if (email_vad === "") {
       detaT.text("Please Fill The Email!");
-      jQuery("#continueProcessButtonClose").hide();
-      jQuery("#continueProcessButton").hide();
-      jQuery("#tempClass").show();
+          jQuery("#continueProcessButtonClose").hide();
+          jQuery("#continueProcessButton").hide();
+          jQuery("#tempClass").show();
       return false;
     }
 
@@ -191,7 +191,7 @@ jQuery(document).ready(function ($) {
     if (businessError.html().trim() == "Please Fill The Business Name!") {
       return false;
     }
-    if (businessError.html().trim() == "Company Name already exists.") {
+    if (businessError.html().trim() == "Business Name already exists.") {
       return false;
     }
 
@@ -218,6 +218,19 @@ jQuery(document).ready(function ($) {
         industry: industry,
       },
       success: function (response) {
+		// ----------------------------------------------
+						//  For Quick Action we are removing loader Here
+						jQuery(".putEmail").text(email);
+						jQuery(".loaderSending").css("display", "none");
+						jQuery("#step-1").fadeOut(500);
+						jQuery("#step-2").fadeIn(500);
+						jQuery("#submit-form").show();
+						jQuery("#custom-registration-form").hide();
+						jQuery(".firstStep").hide();
+						jQuery(".main-container-email").show();
+						var theOtpF = jQuery("#theOtpF");
+						theOtpF.focus();
+		// ----------------------------------------------
         $.ajax({
           type: "post",
           url: customFormFullApi.ajaxurl,
@@ -246,14 +259,14 @@ jQuery(document).ready(function ($) {
               return;
             }
             const parsedResponse = JSON.parse(response.body);
-            console.log("parsedResponse thissssssss: ", parsedResponse);
+            console.log('parsedResponse thissssssss: ', parsedResponse);
             if (parsedResponse.success == false) {
               console.error(response);
               console.error(parsedResponse.message);
               console.error(
                 "Error Occured in the Api responsible for Submitting User Info in WP"
               );
-              jQuery(".loaderVerifying").css("display", "none");
+			  jQuery(".loaderVerifying").css("display", "none");
               jQuery(".loaderSending").css("display", "none");
               jQuery(".loaderTechErroring").css("display", "flex");
               return;
@@ -305,7 +318,7 @@ jQuery(document).ready(function ($) {
                       phone: phone_number,
                       business_name: business_name,
                       business_info_choice: business_info_choice,
-                      industry: industry,
+                      industry: industry
                     },
 
                     success: function (response) {
@@ -313,9 +326,9 @@ jQuery(document).ready(function ($) {
                       console.log(response);
                       if (response.error) {
                         console.error(response);
-                        jQuery(".loaderVerifying").css("display", "none");
-                        jQuery(".loaderSending").css("display", "none");
-                        jQuery(".loaderTechErroring").css("display", "flex");
+                         jQuery(".loaderVerifying").css("display", "none");
+              			 jQuery(".loaderSending").css("display", "none");
+              			 jQuery(".loaderTechErroring").css("display", "flex");
                         return;
                       }
                       const parsedResponse = JSON.parse(response.body);
@@ -325,9 +338,9 @@ jQuery(document).ready(function ($) {
                           "Error Occured in the Api responsible for Submitting Bussiness Name in WP and Making Business in Azure Api  "
                         );
                         console.error(parsedResponse.message);
-                        jQuery(".loaderVerifying").css("display", "none");
-                        jQuery(".loaderSending").css("display", "none");
-                        jQuery(".loaderTechErroring").css("display", "flex");
+						 jQuery(".loaderVerifying").css("display", "none");
+              			 jQuery(".loaderSending").css("display", "none");
+              			 jQuery(".loaderTechErroring").css("display", "flex");
                         return;
                       } else {
                         // Parse the 'body' property of the 'data' property as JSON
@@ -365,6 +378,7 @@ jQuery(document).ready(function ($) {
 
                               success: function (response) {
                                 jQuery(".putEmail").text(email);
+								jQuery("#resendEmail").removeAttr("disabled");
                                 console.log(response);
                                 if (response.error) {
                                   console.error(response);
@@ -392,20 +406,12 @@ jQuery(document).ready(function ($) {
                                     "Error Occured in the Api responsible for Sending OTP"
                                   );
                                   console.error(parsedResponse.message);
-                                  jQuery(".loaderVerifying").css(
-                                    "display",
-                                    "none"
-                                  );
-                                  jQuery(".loaderSending").css(
-                                    "display",
-                                    "none"
-                                  );
-                                  jQuery(".loaderTechErroring").css(
-                                    "display",
-                                    "flex"
-                                  );
+								   jQuery(".loaderVerifying").css("display", "none");
+              					   jQuery(".loaderSending").css("display", "none");
+              					   jQuery(".loaderTechErroring").css("display", "flex");
                                   return;
                                 } else {
+									/*
                                   jQuery("#step-1").fadeOut(500);
                                   jQuery("#step-2").fadeIn(500);
                                   jQuery("#submit-form").show();
@@ -415,6 +421,7 @@ jQuery(document).ready(function ($) {
                                   var theOtpF = jQuery("#theOtpF");
                                   theOtpF.focus();
                                   loader.css("display", "none");
+									*/
                                 }
                               },
                               error: function (xhr, status, error) {

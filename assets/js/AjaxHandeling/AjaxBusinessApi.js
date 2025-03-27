@@ -23,7 +23,7 @@ jQuery(document).ready(function ($) {
         var gettingData = JSON.parse(response.body);
         var modifiedResponse = gettingData.data;
         if (modifiedResponse == true) {
-          businessError.text("Company Name already exists.");
+          businessError.text("Business Name already exists.");
           businessError.css("color", "red");
           email_loader_buzz.css("visibility", "hidden");
           impBtn.prop("disabled", false);

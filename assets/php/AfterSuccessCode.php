@@ -1,35 +1,40 @@
 <?php
 
-//Starting the session
-add_action('init', function () {
-    if (!session_id()) {
-        session_start();
-    }
-});
-
 function custom_registration_form_shortcode_after_success()
 {
 
-    //colors through variables
-    //   $personalInfoColor = '#23DC32'; // Green color
-    $personalInfoColor = '#1429EF'; // Green color
-    $BackgroundColor = '#DEF1FD'; // Light blue color
+	if (session_status() == PHP_SESSION_NONE) {
+		session_start();
+	}
+	
     $options = get_option('custom_settings');
     $save_redirect_url = $options['email_verification_url'];
-    // print_r($_SESSION);
+	$user_email = isset($_SESSION['user_email_saasy']) ? $_SESSION['user_email_saasy'] : '';
+    $user_password = isset($_SESSION['user_password_saasy']) ? $_SESSION['user_password_saasy'] : '';
+	
+	if ($user_email != '' && $user_password != '') {
+	$save_redirect_url = $save_redirect_url.
+    "ioioioqHkXjLzWvUmCnPpBrYtFzGtDdSxNoVbJrMwLyKpQsZaTbAeRkFwHuZgCpQdLxZyJtVnSgYhKwQeRjioioio"
+    . urlencode($user_email) ."ioioioqHkXjLzWvUmCnPpBrYtFzGtDdSxNoVbJrMwLyKpQsZaTbAeRkFwHuZgCpQdLxZyJtVnSgYhKwQeRjioioio"
+    . urlencode($user_password)."ioioioqHkXjLzWvUmCnPpBrYtFzGtDdSxNoVbJrMwLyKpQsZaTbAeRkFwHuZgCpQdLxZyJtVnSgYhKwQeRj";
+	}
+
+	$personalInfoColor = '#1429EF'; // Green color
+    $BackgroundColor = '#DEF1FD'; // Light blue color
+	
     ob_start();
     ?>
 
-<div class="monster" id="monsterDiv" style="display:none">
-    <button class="close-button" style="display:none;">
-        <img src="http://stg.stg.stg.lincsell.com/wp-content/uploads/2024/01/crooos-sign.svg" alt="Close" />
+<div class="monster" id="monsterDiv">
+    <button class="close-button">
+        <img src="../wp-content/uploads/2024/01/crooos-sign.svg" alt="Close" />
     </button>
 
     <div class="loader" style="display:none">
         <div class="ngx-spinner-overlay">
             <div class="col-12 d-flex align-items-center justify-content-center flex-column">
                 <img style="width:150px !important;" decoding="async"
-                    src="https://stg.stg.stg.lincsell.com/wp-content/uploads/2024/01/LincSell-Icon-2-2.gif" data-no-lazy="1"
+                    src="../wp-content/uploads/2024/01/LincSell-Icon-2-2.gif" data-no-lazy="1"
                     alt="logo">
                 <p class="plugin_para_load" style="color:white">Please wait ...</p>
             </div>
@@ -43,7 +48,7 @@ function custom_registration_form_shortcode_after_success()
         <div class="ngx-spinner-overlay">
             <div class="col-12 d-flex align-items-center justify-content-center flex-column">
                 <img style="width:150px !important;" decoding="async"
-                    src="https://stg.stg.stg.lincsell.com/wp-content/uploads/2024/01/LincSell-Icon-2-2.gif" data-no-lazy="1"
+                    src="../wp-content/uploads/2024/01/LincSell-Icon-2-2.gif" data-no-lazy="1"
                     alt="logo">
                 <p class="plugin_para_load" style="color:white">Try Again By Refreshing The Page ...</p>
             </div>
@@ -73,16 +78,17 @@ function custom_registration_form_shortcode_after_success()
     </style>
 
 
-    <div class="container-fluid main-container main-container-after-email justify-content-center align-items-center ">
+    <div class="d-flex container-fluid main-container main-container-after-email justify-content-center align-items-center "
+        style="height:100vh;">
         <div class="d-flex justify-content-center pb-3" style="gap:20px">
 
             <div class="col-11 col-md-11  columns-class-email pb-3 pt-3 px-0 px-md-3">
                 <div class="d-flex flex-column align-items-center">
-                    <a href="https://stg.stg.stg.lincsell.com/"> <img
+                    <a href="<?php echo home_url(); ?>"> <img
                             src="<?php echo plugins_url('../images/logo.svg', __FILE__); ?>" alt="Phone Icon"
                             style="width: 180px; "></a>
 
-                    <div class="mt-3 mb-3"><img src="http://stg.stg.stg.lincsell.com/wp-content/uploads/2024/01/Check-mark.gif"
+                    <div class="mt-3 mb-3"><img src="../wp-content/uploads/2024/01/Check-mark.gif"
                             style="width:80px;" alt="Phone Icon">
                     </div>
                 </div>
@@ -90,41 +96,34 @@ function custom_registration_form_shortcode_after_success()
                     <div class="inner-div-email">
                         <h6 class="heading_06"
                             style="font-size:18px; font-weight:700; color:white; margin:0px; margin-top:5px; margin-bottom:3px">
-                            Welcome Aboard!</h6>
+                           30-day Free Trial Started!</h6>
                         <p class="paraClassCustom mt-3 mb-3"></p>
                     </div>
                     <div class="col-12 mb-3">
-                        <p class="plugin_para paraClassCustom paraClassCustombeta hidPara text-center"
+                       <p class="plugin_para paraClassCustom paraClassCustombeta hidPara text-center"
                             style="margin-bottom:0px; margin-top:0px;">
-                            Your free
-                            trial account has been
-                            created.<b style="color:#5cf94b"><br>Your trial will remain active until <span
-                                    id="dateFormat"></span></b><br>
-                            We will notify you before your trial ends, ensuring you have all the information needed
-                            to decide on continuing with us.
+                            Your free trial is now active, giving you everything you need to start building your webstore.<br>Your free trial account will last until <b style="color:#5cf94b"><span id="dateFormat"></span></b>. We will notify you before your trial ends.<br><br>
+                            Ready to bring your webstore to life? Click below to jump straight into your dashboard and start creating!
                         </p>
 
                     </div>
                     <!-- 					---------------------------------------------------------------------- -->
                     <button onclick="changeEmail()" class="hidButton btn btn-custom btn-cus btn-primary d-none"
                         style="margin-top:5px;" id="verifyOtp">ChangeEmail</button>
-
-                    <a style="margin-top:5px;" href="<?php echo $save_redirect_url ?>"><button
-                            class="showButton btn btn-custom btn-cus btn-primary" id="redirectTester">Login To
-                            Business Dashboard</button></a>
-                    <div>
-
-                        <p class="plugin_para paraClassCustom hidPara" style="margin-bottom:0px;">Redirecting in
-                            <span id="countdown">59</span>s ...
-                        </p>
-
-                    </div>
+					<div style="height:33px;">
+						<div id="countdown">
+							<p class="plugin_para paraClassCustom paraClassCustombeta" style="font-size:16px;">Getting your store ready in...<span id="countdownTimer">9</span></p>
+						</div>
+					</div>
+                    <a style="margin-top:5px;" href="<?php echo $save_redirect_url ?>"><button 
+                      disabled style="background-color: #6b6b6b;cursor: not-allowed;" class="showButton btn btn-custom btn-cus btn-primary" id="redirectTester">Start Building Your Webstore</button></a>
+                 
                     <!-- 					------------------------------------------------------------------------------ -->
-                    <div class="hidData d-flex flex-column align-items-center">
+                    <div class="d-none hidData flex-column align-items-center">
                         <h6 class="heading_06 "
                             style="font-size:18px; font-weight:700; color:white; margin:0px;margin-top:40px; margin-bottom:15px">
                             During your trial, you will enjoy:</h6>
-                        <div class="d-flex align-items-center justify-content-center flex-wrap pt-5 pb-5">
+                        <div class="d-flex justify-content-center flex-wrap pt-5 pb-5">
                             <div class="col-6 col-md-3">
                                 <div class="col-1 d-flex align-items-center justify-content-center"
                                     style="margin-bottom:10px; background-color:white;border-radius:8px; font-family:'Mona Bold'; color:black">
@@ -148,22 +147,7 @@ function custom_registration_form_shortcode_after_success()
                                     style="margin-bottom:10px; background-color:white;border-radius:8px; font-family:'Mona Bold'; color:black">
                                     2
                                 </div>
-                                <div class="rem-pad d-flex flex-column align-items-md-start">
-                                    <p class="plugin_para text-start paraclass paraClassCustom"
-                                        style="font-family: 'Mona Bold', Sans-serif !important;font-size:18px;">
-                                        POS App</p>
-                                    <p class="plugin_para paraClassCustom paraClassCustombeta " style="margin-top:0px">A
-                                        mobile point-of-sale
-                                        application
-                                        to streamline sales transactions.</p>
-                                </div>
-                            </div>
 
-                            <div class="col-6 col-md-3">
-                                <div class="col-1 d-flex align-items-center justify-content-center"
-                                    style="margin-bottom:10px; background-color:white;border-radius:8px; font-family:'Mona Bold'; color:black">
-                                    3
-                                </div>
                                 <div class="rem-pad d-flex flex-column align-items-start">
                                     <p class="plugin_para text-start paraclass paraClassCustom"
                                         style="font-family: 'Mona Bold', Sans-serif !important;font-size:18px;">
@@ -180,7 +164,7 @@ function custom_registration_form_shortcode_after_success()
                             <div class="col-6 col-md-3">
                                 <div class="col-1 d-flex align-items-center justify-content-center"
                                     style="margin-bottom:10px; background-color:white;border-radius:8px; font-family:'Mona Bold'; color:black">
-                                    4
+                                    3
                                 </div>
                                 <div class="rem-pad d-flex flex-column align-items-start">
                                     <p class="plugin_para text-start paraclass paraClassCustom"
@@ -190,6 +174,23 @@ function custom_registration_form_shortcode_after_success()
                                         Preview the customer
                                         experience with
                                         a demo of our dedicated customer app.</p>
+                                </div>
+
+                            </div>
+
+                            <div class="col-6 col-md-3">
+                                <div class="col-1 d-flex align-items-center justify-content-center"
+                                    style="margin-bottom:10px; background-color:white;border-radius:8px; font-family:'Mona Bold'; color:black">
+                                    4
+                                </div>
+                                <div class="rem-pad d-flex flex-column align-items-md-start">
+                                    <p class="plugin_para text-start paraclass paraClassCustom"
+                                        style="font-family: 'Mona Bold', Sans-serif !important;font-size:18px;">
+                                        POS App</p>
+                                    <p class="plugin_para paraClassCustom paraClassCustombeta " style="margin-top:0px">A
+                                        mobile point-of-sale
+                                        application
+                                        to streamline sales transactions.</p>
                                 </div>
                             </div>
 
@@ -210,6 +211,50 @@ function custom_registration_form_shortcode_after_success()
 
 
 </div>
+<style>
+.close-button {
+    position: fixed;
+    top: 10px;
+    right: -20px;
+    background-color: transparent !important;
+    border: none;
+    font-size: 40px;
+    cursor: pointer;
+    color: white;
+    outline: none;
+    z-index: 999999;
+}
+
+.close-button:active {
+    background-color: transparent !important;
+}
+
+.close-button span {
+    font-weight: bold;
+}
+</style>
+
+<script>
+	jQuery(document).ready(function($) {
+		let countdown = 9; // Start countdown from 7 seconds
+		const $countdownTimer = $("#countdownTimer");
+		const $countdownText = $("#countdown");
+		const $button = $("#redirectTester");
+
+		// Update the countdown every second
+		const timer = setInterval(function() {
+			countdown--;
+			$countdownTimer.text(countdown);
+
+			if (countdown <= 0) {
+				clearInterval(timer); // Stop countdown
+				$countdownText.hide(); // Hide countdown text
+				$button.prop("disabled", false) // Enable button
+					.css({"background-color": "", "border-color": "", "cursor": "pointer"}); // Restore default button style
+			}
+		}, 1000);
+	});
+</script>
 
 <?php
 return ob_get_clean();

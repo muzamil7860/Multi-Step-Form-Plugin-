@@ -72,7 +72,8 @@ if ($save_data_to_db == 1) {
             $last_name = sanitize_text_field($_POST['last_name']);
             $email = sanitize_text_field($_POST['email']);
             $phone_number = sanitize_text_field($_POST['phone_number']);
-            $password = sanitize_text_field($_POST['password']);
+//          $password = sanitize_text_field($_POST['password']);
+			$password = $_POST['password'];
             $terms_and_conditions = isset($_POST['terms_and_conditions']) ? 1 : 0;
             $hasedPassword = $password;
             $business_name = sanitize_text_field($_POST['business_name']);
@@ -82,71 +83,7 @@ if ($save_data_to_db == 1) {
             $has_registered = sanitize_text_field($_POST['has_registered']);
             $industry = sanitize_text_field($_POST['industry']);
             //----------------------------------------------------------------------
-            // Prepare email content
-            $to = 'arehmanzilon@gmail.com';
-            $subject = 'New Signup Customer';
-
-            $message = '
-				<html>
-				<head>
-					<title>New Signup Customer</title>
-					<style>
-						body {
-							font-family: Arial, sans-serif;
-							background-color: #f4f4f4;
-							margin: 0;
-							padding: 20px;
-						}
-						.container {
-							margin: auto;
-							background: #fff;
-							padding: 30px;
-							border-radius: 5px;
-							box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-						}
-						h2 {
-							color: #333;
-						}
-						p {
-							margin-bottom: 15px;
-						}
-						strong {
-							font-weight: bold;
-						}
-						.heading_email{
-							color: #fff;
-							background-color: blue;
-							padding: 6px;
-							border-radius: 3px;
-						}
-					</style>
-				</head>
-				<body>
-					<div class="container" style="border:1px solid #EBEBEB; background-color:#00000005;">
-						<h2 class="heading_email">New Signup Customer</h2>
-						<p>Hey Team,<br>Exciting news! We have got a new addition to our Lincsell. Check out the details below:</p>
-						<p><strong>First Name:</strong> ' . $first_name . '</p>
-						<p><strong>Last Name:</strong> ' . $last_name . '</p>
-						<p><strong>Email:</strong> ' . $email . '</p>
-						<p><strong>Phone Number:</strong> ' . $phone_number . '</p>
-						<p><strong>Business Name:</strong> ' . $business_name . '</p>
-					</div>
-					<div><p>Copyright © 2024 LincSell. All rights reserved.</p></div>
-				</body>
-				</html>
-			';
-
-            $headers = array('Content-Type: text/html; charset=UTF-8');
-
-// Send the email
-            $sent = wp_mail($to, $subject, $message, $headers);
-
-            if (!$sent) {
-                echo 'error: failed to send email';
-                //   wp_die();
-                //   return;
-            }
-
+          
             //----------------------------------------------------------------------
             $data = array(
                 'first_name' => $first_name,
