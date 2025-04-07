@@ -361,6 +361,8 @@ document
     }
   });
 
+/*
+
 function showPasswordStrengthMeter() {
   var passwordStrength = document.querySelector(".password-strength");
   passwordStrength.style.display = "block";
@@ -448,6 +450,120 @@ if (passwordVar) {
     .getElementById("password")
     .addEventListener("input", checkPasswordStrength);
 }
+
+*/
+
+
+function showPasswordStrengthMeter() {
+  var passwordStrength = document.querySelector(".password-strength");
+  passwordStrength.style.display = "block";
+  jQuery("#suggestionModal").modal("show");
+}
+
+
+const filledCheck = `
+<svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 15 15">
+  <path fill="#0bff15" fill-rule="evenodd" d="M0 7.5a7.5 7.5 0 1 1 15 0a7.5 7.5 0 0 1-15 0m7.072 3.21l4.318-5.398l-.78-.624l-3.682 4.601L4.32 7.116l-.64.768z" clip-rule="evenodd"/>
+</svg>`;
+
+const outlineCheck = `
+<svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 15 15">
+  <path fill="none" stroke="currentColor" d="M4 7.5L7 10l4-5m-3.5 9.5a7 7 0 1 1 0-14a7 7 0 0 1 0 14Z" stroke-width="1"/>
+</svg>`;
+
+const redCheck = `
+<svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 15 15">
+  <path fill="none" stroke="#f00" d="M4 7.5L7 10l4-5m-3.5 9.5a7 7 0 1 1 0-14a7 7 0 0 1 0 14Z" stroke-width="1"/>
+</svg>`;
+
+function updateCriteriaIcon(id, condition, isBlurred = false) {
+  const li = document.getElementById(id);
+  if (!li) return;
+  const iconSpan = li.querySelector(".icon");
+  if (!iconSpan) return;
+
+  if (condition) {
+    iconSpan.innerHTML = filledCheck;
+    li.style.color = "#02d502";
+  } else if (isBlurred) {
+    iconSpan.innerHTML = redCheck;
+    li.style.color = "red";
+  } else {
+    iconSpan.innerHTML = outlineCheck;
+    li.style.color = "#B3B0B0";
+  }
+}
+
+function checkPasswordStrength(isBlurred = false) {
+  const password = document.getElementById("password").value;
+  const meter = document.getElementById("password-strength-meter");
+  const label = document.getElementById("password-strength-label");
+  const progressBar = meter.querySelector(".progress-bar");
+
+  const isLower = /[a-z]/.test(password);
+  const isUpper = /[A-Z]/.test(password);
+  const isNumber = /\d/.test(password);
+  const isSpecial = /[!@#$%^&*()_+{}\[\]:;<>,.?~\\/-]/.test(password);
+  const isLength = password.length >= 8;
+
+  updateCriteriaIcon("criteria-lower", isLower, isBlurred);
+  updateCriteriaIcon("criteria-upper", isUpper, isBlurred);
+  updateCriteriaIcon("criteria-number", isNumber, isBlurred);
+  updateCriteriaIcon("criteria-special", isSpecial, isBlurred);
+  updateCriteriaIcon("criteria-length", isLength, isBlurred);
+
+  const strength = isLower + isUpper + isNumber + isSpecial + isLength;
+  progressBar.style.width = strength * 20 + "%";
+  progressBar.className = "progress-bar";
+
+  if (strength === 5) {
+    progressBar.classList.add("bg-success");
+  } else if (strength >= 3) {
+    progressBar.classList.add("bg-info");
+  } else if (strength >= 2) {
+    progressBar.classList.add("bg-warning");
+  } else {
+    progressBar.classList.add("bg-danger");
+  }
+
+  switch (strength) {
+    case 5: label.textContent = "Very Strong"; break;
+    case 4:
+    case 3: label.textContent = "Strong"; break;
+    case 2: label.textContent = "Moderate"; break;
+    case 1: label.textContent = "Weak"; break;
+    default: label.textContent = "Very Weak";
+  }
+}
+
+// Show criteria only on first focus
+document.addEventListener("DOMContentLoaded", function () {
+  const passwordInput = document.getElementById("password");
+  const criteriaContainer = document.getElementById("criteria-container");
+  let firstFocusDone = false;
+
+  if (passwordInput) {
+    passwordInput.addEventListener("focus", () => {
+      if (!firstFocusDone) {
+        criteriaContainer.style.display = "block";
+        firstFocusDone = true;
+      }
+      checkPasswordStrength(false);
+    });
+
+    passwordInput.addEventListener("input", () => {
+      checkPasswordStrength(false);
+    });
+
+    passwordInput.addEventListener("blur", () => {
+      checkPasswordStrength(true);
+    });
+  }
+});
+
+
+
+
 
 jQuery(document).ready(function ($) {
   jQuery(".Option3").css("background-color", "#142aef1a");

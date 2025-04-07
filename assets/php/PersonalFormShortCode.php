@@ -364,6 +364,60 @@ function custom_registration_form_shortcode()
 									<div id="password-feedback" class="error-div-password password-feedback-width"
 										 style="font-size: 13px; margin-top:-22px; line-height:20px">
 									</div>
+<!-- ################################################ -->
+									<!-- Criteria List Container (Visible for demo) -->
+<div id="criteria-container"  style="display: none;">
+  <div class="criteria-flex" style="margin-top:10px; margin-bottom:-25px;">
+    <!-- Left Column (3 items) -->
+    <ul class="criteria-list" style="padding-left:0px; margin:0px;">
+      <li id="criteria-lower">
+        <span class="icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15 15">
+            <path fill="none" stroke="currentColor" d="M4 7.5L7 10l4-5m-3.5 9.5a7 7 0 1 1 0-14a7 7 0 0 1 0 14Z" stroke-width="0"/>
+          </svg>
+        </span>
+        Contains at least 1 lowercase letter
+      </li>
+      <li id="criteria-upper">
+        <span class="icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15 15">
+            <path fill="none" stroke="currentColor" d="M4 7.5L7 10l4-5m-3.5 9.5a7 7 0 1 1 0-14a7 7 0 0 1 0 14Z" stroke-width="1"/>
+          </svg>
+        </span>
+        Contains at least 1 uppercase letter
+      </li>
+      <li id="criteria-number">
+        <span class="icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15 15">
+            <path fill="none" stroke="currentColor" d="M4 7.5L7 10l4-5m-3.5 9.5a7 7 0 1 1 0-14a7 7 0 0 1 0 14Z" stroke-width="1"/>
+          </svg>
+        </span>
+        Contains at least 1 number
+      </li>
+    </ul>
+
+    <!-- Right Column (2 items) -->
+    <ul class="criteria-list" style="padding-left:0px; margin:0px;">
+      <li id="criteria-special">
+        <span class="icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15 15">
+            <path fill="none" stroke="currentColor" d="M4 7.5L7 10l4-5m-3.5 9.5a7 7 0 1 1 0-14a7 7 0 0 1 0 14Z" stroke-width="1"/>
+          </svg>
+        </span>
+        Contains at least 1 special character
+      </li>
+      <li id="criteria-length">
+        <span class="icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15 15">
+            <path fill="none" stroke="currentColor" d="M4 7.5L7 10l4-5m-3.5 9.5a7 7 0 1 1 0-14a7 7 0 0 1 0 14Z" stroke-width="1"/>
+          </svg>
+        </span>
+        Is at least 8 characters long
+      </li>
+    </ul>
+  </div>
+</div>
+<!-- ################################################ -->
 
 
 									<div class="password-strength" style="margin-top:-5px; display:none;">
@@ -564,6 +618,54 @@ inputmode="numeric" />
 		option {
 			border-radius: 50px;
 		}
+		
+		 .criteria-flex {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .criteria-list {
+      font-family: 'Mona Medium', sans-serif;
+      list-style: none;
+      padding-left: 0;
+      font-size: 13px;
+      color: #B3B0B0;
+      margin-top: 10px;
+      flex: 1 1 45%;
+    }
+
+    .criteria-list li {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 8px;
+    }
+
+/*     .icon svg {
+      width: 18px;
+      height: 18px;
+      stroke: currentColor;
+    } */
+
+    @media (max-width: 600px) {
+      .criteria-flex {
+        flex-direction: column;
+		gap:0px;
+      }
+
+      .criteria-list {
+        flex: 1 1 100%;
+      }
+    }
+
+	.icon svg {
+    height: 15px;
+    stroke: rgb(0 128 0 / 0%);
+}
+
+
+
 	</style>
 
 	<?php
