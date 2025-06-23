@@ -1,36 +1,31 @@
-:root {
-  --main-background-color: white;
-  --resend-button-background: rgba(0, 0, 0, 0);
-  --resend-button-text-color: #1429ef;
-  --toast-error-background: red;
-  --otp-button-background: #1429ef;
-  --otp-button-text-color: #fff;
-  --small-buttons-no-background: #1429ef;
-  --small-buttons-no-text-color: white;
-  --small-buttons-yes-background: white;
-  --small-buttons-yes-text-color: #1429ef;
-}
-/* 
 .columns-class-email {
-background-color: var(--main-background-color);
+  background-color: white;
   border-radius: 5px;
   height: 100%;
-} */
+}
 
 #resendEmail {
-  background-color: var(--resend-button-background) !important;
-  color: white;
-  border: none !important;
+  background-color: rgba(0, 0, 0, 0) !important;
+  color: #23dc32;
+  border: none !important ;
   font-weight: 500;
   text-decoration: underline;
   padding: 2px;
 }
-/* 
+
+/* toaster csss  */
+
 #toast-container > .toast-error {
   background-image: none !important;
-  background-color: var(--toast-error-background) !important;
-} */
+  background-color: red !important;
+}
 
+.toast-message {
+  line-height: 20px;
+  font-family: "Rubik", sans-serif;
+}
+
+/* Add your custom styles for OTP input here */
 .otp-container {
   text-align: center;
   margin-top: 20px;
@@ -55,8 +50,8 @@ background-color: var(--main-background-color);
 .otp-button {
   margin-top: 10px;
   padding: 10px 20px;
-  background-color: var(--otp-button-background);
-  color: var(--otp-button-text-color);
+  background-color: #23dc32;
+  color: #fff;
   border: none;
   border-radius: 5px;
   cursor: pointer;
@@ -81,9 +76,9 @@ background-color: var(--main-background-color);
   border: 1px solid black;
   border-radius: 5px;
   font-size: 14px;
-  color: var(--small-buttons-no-text-color);
-  background-color: var(--small-buttons-no-background);
-  border-color: var(--small-buttons-no-background);
+  color: white;
+  background-color: #23dc32;
+  border-color: #23dc32;
   padding-left: 15px;
   padding-right: 15px;
   margin-top: 5px;
@@ -93,9 +88,9 @@ background-color: var(--main-background-color);
   border: 1px solid black;
   border-radius: 5px;
   font-size: 14px;
-  color: var(--small-buttons-no-text-color);
-  background-color: var(--small-buttons-no-background);
-  border-color: var(--small-buttons-no-background);
+  color: white;
+  background-color: #23dc32;
+  border-color: #23dc32;
   padding-left: 15px;
   padding-right: 15px;
   margin-top: 5px;
@@ -105,9 +100,9 @@ background-color: var(--main-background-color);
   border: 1px solid black;
   border-radius: 5px;
   font-size: 14px;
-  color: var(--small-buttons-yes-text-color);
-  background-color: var(--small-buttons-yes-background);
-  border-color: var(--small-buttons-yes-background);
+  color: #23dc32;
+  background-color: white;
+  border-color: #23dc32;
   padding-left: 15px;
   padding-right: 15px;
   margin-right: 5px;
