@@ -178,7 +178,6 @@ jQuery("#button_header_cus_4").on("click", "a", function (e) {
   jQuery("#header_custom_pd").css("z-index", "0");
   jQuery("#header_custom_pm").css("z-index", "0");
   jQuery("#monsterDiv").show();
-
   var div = document.getElementById("monsterDiv");
   var backgroundImage = new Image();
   backgroundImage.src = getComputedStyle(div)
@@ -196,7 +195,6 @@ jQuery("#button_header_cus_4").on("click", "a", function (e) {
   jQuery("#monsterDiv").css("scrollbar-width", "none");
   jQuery(".page-template-default").css("overflow", "hidden");
 });
-
 
 
 jQuery("#button_header_cus_6 a").on("click", function () {
